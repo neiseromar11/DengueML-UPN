@@ -18,6 +18,7 @@ st.markdown("""
   --text:#f3f7fa; --muted:#9fb6c3; --amber:#ffb440; --red:#ff5b5b; --purple:#a775ff;
   --shadow:0 12px 30px rgba(0,0,0,.26);
 }
+*{ box-sizing: border-box; }
 #MainMenu {visibility: hidden;}
 footer {visibility: hidden;}
 header {visibility: hidden;}
@@ -29,7 +30,17 @@ header {visibility: hidden;}
 [data-testid="stSidebar"] {
     background: #071722 !important;
     border-right: 1px solid #12303d !important;
+    min-width: 220px !important;
 }
+/* Contenedor principal: evitar scroll horizontal */
+[data-testid="stMainBlockContainer"],
+[data-testid="stMain"],
+.stMainBlockContainer {
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+}
+
+/* ---- TARJETAS (Cards) ---- */
 .custom-card {
     background: linear-gradient(180deg,rgba(15,39,51,.98),rgba(8,25,35,.98));
     border: 1px solid #174152;
@@ -39,17 +50,22 @@ header {visibility: hidden;}
     position: relative;
     overflow: hidden;
     margin-bottom: 1rem;
+    min-width: 0;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 .custom-card::after {
     content: ""; position: absolute; right: -24px; top: -24px; width: 90px; height: 90px;
     border-radius: 50%; background: radial-gradient(circle,rgba(53,183,255,.12),transparent 70%);
+    pointer-events: none;
 }
 .custom-card .label { font-size: 13px; color: #d9e7ee; }
 .custom-card .value { font-size: 32px; font-weight: 800; margin-top: 8px; }
 .custom-card .sub { font-size: 11px; color: var(--muted); margin-top: 4px; }
-.custom-card .list-item { font-size: 12px; color: var(--muted); margin-top: 4px; display: flex; justify-content: space-between;}
+.custom-card .list-item { font-size: 12px; color: var(--muted); margin-top: 4px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 4px;}
 .custom-card .list-item b { color: #fff; }
 
+/* ---- TOPBAR ---- */
 .topbar-header {
     background: rgba(6,18,26,.8);
     border-bottom: 1px solid #15313d;
@@ -59,6 +75,8 @@ header {visibility: hidden;}
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
 }
 .topbar-header h2 { margin: 0; font-size: 18px; color: var(--text); }
 .topbar-header p { margin: 4px 0 0; font-size: 12px; color: var(--muted); }
@@ -66,20 +84,88 @@ header {visibility: hidden;}
 .sky { color: var(--sky); }
 .amber { color: var(--amber); }
 
+/* ---- MAPA DE RIESGO ---- */
 .map { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; padding: 10px; background: linear-gradient(145deg,#0a1e29,#0c2531); border-radius: 12px; border: 1px solid #183d4b;}
-.district { padding: 17px 8px; border-radius: 12px; text-align: center; font-size: 11px; font-weight: 700; border: 1px solid rgba(255,255,255,.08); }
+.district { padding: 17px 8px; border-radius: 12px; text-align: center; font-size: 11px; font-weight: 700; border: 1px solid rgba(255,255,255,.08); min-width: 0; word-wrap: break-word; }
 .low { background: linear-gradient(180deg,#1f8f5f,#16754d); }
 .mid { background: linear-gradient(180deg,#d98a1c,#af6710); }
 .high { background: linear-gradient(180deg,#ce4e4e,#a73737); }
 
+/* ---- MÉTRICAS ---- */
 .metrics { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
-.metric { background: #0d2936; border: 1px solid #1a4e61; border-radius: 12px; padding: 12px; font-size: 12px;}
+.metric { background: #0d2936; border: 1px solid #1a4e61; border-radius: 12px; padding: 12px; font-size: 12px; min-width: 0; word-wrap: break-word;}
 .metric b { display: block; font-size: 20px; margin-top: 6px; }
 
+/* ---- AUDITORÍA ---- */
 .audit { display: grid; gap: 8px; }
 .event { display: grid; grid-template-columns: 120px 1fr; gap: 10px; padding: 8px 0; border-bottom: 1px solid #143340; font-size: 12px; }
 .event time { color: #9db7c3; }
 .event span { color: #d9e6ec; }
+
+/* ---- GRÁFICO: evitar desbordamiento ---- */
+.stChart, [data-testid="stVegaLiteChart"] {
+    max-width: 100% !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+}
+
+/* ===========================================================
+   RESPONSIVE: MEDIA QUERIES
+   =========================================================== */
+
+/* ---- LAPTOP ≤ 1200px ---- */
+@media (max-width: 1200px) {
+    .topbar-header { padding: 12px 16px; }
+    .topbar-header h2 { font-size: 16px; }
+    .custom-card .value { font-size: 28px; }
+    .district { padding: 12px 6px; font-size: 10px; }
+}
+
+/* ---- TABLET ≤ 992px ---- */
+@media (max-width: 992px) {
+    .topbar-header { flex-direction: column; align-items: flex-start; }
+    .topbar-header h2 { font-size: 15px; }
+    .custom-card .value { font-size: 26px; }
+    .map { grid-template-columns: repeat(3, 1fr); }
+    .metrics { grid-template-columns: 1fr 1fr; gap: 8px; }
+    .event { grid-template-columns: 90px 1fr; font-size: 11px; }
+}
+
+/* ---- TABLET PEQUEÑA / MÓVIL GRANDE ≤ 768px ---- */
+@media (max-width: 768px) {
+    .topbar-header { padding: 10px 12px; }
+    .topbar-header h2 { font-size: 14px; }
+    .topbar-header p { font-size: 11px; }
+    .custom-card { padding: 12px; border-radius: 10px; }
+    .custom-card .value { font-size: 24px; }
+    .custom-card .label { font-size: 12px; }
+    .custom-card .sub { font-size: 10px; }
+    .custom-card .list-item { font-size: 11px; }
+    .map { grid-template-columns: repeat(2, 1fr); gap: 5px; }
+    .district { padding: 12px 6px; font-size: 10px; }
+    .metrics { grid-template-columns: 1fr; }
+    .metric { padding: 10px; }
+    .metric b { font-size: 16px; }
+    .event { grid-template-columns: 80px 1fr; gap: 6px; font-size: 11px; }
+    [data-testid="stSidebar"] { min-width: 200px !important; }
+}
+
+/* ---- MÓVIL ≤ 480px ---- */
+@media (max-width: 480px) {
+    .topbar-header { padding: 8px 10px; border-radius: 8px; }
+    .topbar-header h2 { font-size: 13px; }
+    .topbar-header p { font-size: 10px; }
+    .custom-card { padding: 10px; border-radius: 8px; margin-bottom: 0.6rem; }
+    .custom-card .value { font-size: 20px; }
+    .custom-card .label { font-size: 11px; }
+    .map { grid-template-columns: repeat(2, 1fr); gap: 4px; padding: 6px; }
+    .district { padding: 10px 4px; font-size: 9px; }
+    .metrics { gap: 6px; }
+    .metric { padding: 8px; font-size: 11px; }
+    .metric b { font-size: 14px; }
+    .event { grid-template-columns: 70px 1fr; gap: 4px; font-size: 10px; }
+    [data-testid="stSidebar"] { min-width: 180px !important; }
+}
 </style>
 """, unsafe_allow_html=True)
 
