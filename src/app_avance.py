@@ -1,8 +1,19 @@
 import os
+import sys
+import traceback
 import streamlit as st
 import pandas as pd
 import numpy as np
 from datetime import datetime
+
+# Agregar src al path para imports internos
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+
+from audit import registrar_evento, obtener_eventos_recientes
+from config import (
+    DISTRITOS_VALIDOS, HORIZONTES_VALIDOS, PERIODOS_VALIDOS,
+    ENABLE_AUDIT_LOG
+)
 
 # ---------------------------------------------------------
 # CONFIGURACIÓN DE PÁGINA Y CSS
@@ -170,22 +181,34 @@ header {visibility: hidden;}
 """, unsafe_allow_html=True)
 
 # ---------------------------------------------------------
-# LÓGICA DE DATOS
+# LÓGICA DE DATOS (con manejo seguro de errores)
 # ---------------------------------------------------------
+registrar_evento("APP_INICIO", "Dashboard DengueML-UPN iniciado")
+
 @st.cache_data
 def cargar_historico_epidemiologico():
     BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     ruta_archivo = os.path.join(BASE_DIR, 'datos_abiertos_vigilancia_dengue.csv') 
     try:
-        df = pd.read_csv(ruta_archivo, sep=';', encoding='utf-8-sig', low_memory=False, on_bad_lines='skip')
-    except UnicodeDecodeError:
-        df = pd.read_csv(ruta_archivo, sep=';', encoding='latin-1', low_memory=False, on_bad_lines='skip')
+        try:
+            df = pd.read_csv(ruta_archivo, sep=';', encoding='utf-8-sig', low_memory=False, on_bad_lines='skip')
+        except UnicodeDecodeError:
+            df = pd.read_csv(ruta_archivo, sep=';', encoding='latin-1', low_memory=False, on_bad_lines='skip')
+    except FileNotFoundError:
+        registrar_evento("ERROR", "Archivo de datos no encontrado", nivel="ERROR")
+        st.error("No se pudo procesar la información solicitada. Verifique los datos e inténtelo nuevamente.")
+        st.stop()
+    except Exception:
+        registrar_evento("ERROR", "Error inesperado al cargar datos", nivel="ERROR")
+        st.error("No se pudo procesar la información solicitada. Verifique los datos e inténtelo nuevamente.")
+        st.stop()
     
     df.columns = df.columns.str.strip().str.lower()
     df.rename(columns=lambda x: x.replace('ï»¿', '').replace('\ufeff', ''), inplace=True)
     
     if 'departamento' not in df.columns:
-        st.error("Error: No se encontró la columna 'departamento'.")
+        registrar_evento("ERROR", "Columna departamento no encontrada en dataset", nivel="ERROR")
+        st.error("No se pudo procesar la información solicitada. Verifique los datos e inténtelo nuevamente.")
         st.stop()
         
     df_sjl = df[(df['departamento'] == 'LIMA') & (df['distrito'] == 'SAN JUAN DE LURIGANCHO')].copy()
@@ -200,7 +223,14 @@ def cargar_historico_epidemiologico():
     
     return df_agrupado.dropna().reset_index(drop=True)
 
-df_historico = cargar_historico_epidemiologico()
+try:
+    df_historico = cargar_historico_epidemiologico()
+    registrar_evento("CARGA_DATOS", "Dataset epidemiológico cargado correctamente")
+    registrar_evento("PROCESAMIENTO_ETL", "Agrupación y generación de lags completada")
+except Exception:
+    registrar_evento("ERROR", "Fallo crítico al cargar datos", nivel="ERROR")
+    st.error("No se pudo procesar la información solicitada. Verifique los datos e inténtelo nuevamente.")
+    st.stop()
 
 # ---------------------------------------------------------
 # SIDEBAR
@@ -215,25 +245,39 @@ st.sidebar.markdown("""
 
 st.sidebar.markdown("<h4 style='color:#d7e9f0;font-size:14px;margin-top:20px;'>⚲ Filtros</h4>", unsafe_allow_html=True)
 
-periodo = st.sidebar.selectbox("Periodo", ["Ene 2023 – Dic 2024", "Últimas 12 semanas"])
-distrito = st.sidebar.selectbox("Distrito", ["San Juan de Lurigancho", "Rímac", "Cercado de Lima", "La Victoria", "Breña", "San Luis", "Todos los distritos (DIRIS Lima Centro)"])
-# Corrección 2: Opciones de horizonte de predicción
-horizonte = st.sidebar.selectbox("Horizonte de predicción", ["2 semanas", "3 semanas", "4 semanas"], index=2)
+periodo = st.sidebar.selectbox("Periodo", PERIODOS_VALIDOS)
+distrito = st.sidebar.selectbox("Distrito", DISTRITOS_VALIDOS)
+horizonte = st.sidebar.selectbox("Horizonte de predicción", HORIZONTES_VALIDOS, index=2)
 
 opciones_fechas = df_historico['semana_epidemiologica'].tolist()[20:]
 semana_seleccionada = st.sidebar.select_slider("Semana Límite de Entrenamiento:", options=opciones_fechas, value=opciones_fechas[-5])
 
+# Validación de entradas
+if periodo not in PERIODOS_VALIDOS:
+    st.sidebar.warning("Periodo seleccionado no válido.")
+    registrar_evento("ERROR", "Periodo inválido seleccionado", nivel="WARNING")
+if distrito not in DISTRITOS_VALIDOS:
+    st.sidebar.warning("Distrito seleccionado fuera del alcance configurado.")
+    registrar_evento("ERROR", "Distrito inválido seleccionado", nivel="WARNING")
+if horizonte not in HORIZONTES_VALIDOS:
+    st.sidebar.warning("Horizonte de predicción no permitido.")
+    registrar_evento("ERROR", "Horizonte inválido seleccionado", nivel="WARNING")
+if semana_seleccionada not in opciones_fechas:
+    st.sidebar.warning("Semana epidemiológica fuera del rango válido.")
+    registrar_evento("ERROR", "Semana epidemiológica inválida", nivel="WARNING")
+
 if st.sidebar.button("⟳  Actualizar Predicción"):
-    # Corrección 13: Mensaje de información actualizada para fines demostrativos
+    registrar_evento("FILTROS_ACTUALIZADOS", f"Periodo={periodo}, Distrito={distrito}, Horizonte={horizonte}")
+    registrar_evento("PREPARACION_MODELADO", "Preparación de datos para modelado")
     st.sidebar.success("Información actualizada para fines demostrativos.")
 
-# Corrección 14: Descargar reporte
-csv_data = f"Periodo,Distrito,Horizonte,Estado del riesgo,Fecha de consulta\\n{periodo},{distrito},{horizonte},Demostrativo,{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}"
+# Descargar reporte
+csv_data = f"Periodo,Distrito,Horizonte,Estado del riesgo,Fecha de consulta\n{periodo},{distrito},{horizonte},Demostrativo,{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}"
 st.sidebar.download_button(
     label="⬇  Descargar reporte",
     data=csv_data,
     file_name='reporte_dengueml.csv',
-    mime='text/csv'
+    mime='text/csv',
 )
 
 st.sidebar.markdown("""
@@ -368,16 +412,20 @@ with col_metrics:
     """, unsafe_allow_html=True)
 
 with col_audit:
-    # Corrección 10: Auditoría y trazabilidad
-    st.markdown("""
+    eventos_recientes = obtener_eventos_recientes(5)
+    if ENABLE_AUDIT_LOG and eventos_recientes:
+        eventos_html = ""
+        for ev in eventos_recientes:
+            hora = ev["fecha"].split(" ")[1][:5] if " " in ev["fecha"] else "Reciente"
+            eventos_html += f'<div class="event"><time>{hora}</time><span>{ev["descripcion"]}</span></div>'
+    else:
+        eventos_html = '<div class="event"><time>Hoy</time><span>Inicio de sesión · Analista UPN</span></div>'
+        
+    st.markdown(f"""
     <div class='custom-card' style='padding:14px; height:100%;'>
         <h3 style='margin:0 0 12px;font-size:15px;color:white;'>Auditoría y trazabilidad</h3>
         <div class="audit">
-            <div class="event"><time>Reciente</time><span>Preparación de datos para modelado completada</span></div>
-            <div class="event"><time>Reciente</time><span>Ejecución de procesamiento ETL</span></div>
-            <div class="event"><time>Reciente</time><span>Carga de dataset</span></div>
-            <div class="event"><time>Reciente</time><span>Actualización de filtros</span></div>
-            <div class="event"><time>Hoy</time><span>Inicio de sesión · Analista UPN</span></div>
+            {eventos_html}
         </div>
     </div>
     """, unsafe_allow_html=True)
