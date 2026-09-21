@@ -1,0 +1,27 @@
+==================================================
+REPORTE DE CALIDAD DE DATOS - DengueML-UPN
+==================================================
+Fecha de evaluación: 2026-09-20 22:37:19
+
+Total de registros evaluados (Lima): 122854
+Registros duplicados exactos: 25654
+
+Valores faltantes por columna:
+  - departamento: 0 (0.00%)
+  - provincia: 0 (0.00%)
+  - distrito: 0 (0.00%)
+  - localidad: 48222 (39.25%)
+  - enfermedad: 0 (0.00%)
+  - ano: 0 (0.00%)
+  - semana: 0 (0.00%)
+  - diagnostic: 0 (0.00%)
+  - diresa: 0 (0.00%)
+  - ubigeo: 0 (0.00%)
+  - localcod: 38826 (31.60%)
+  - edad: 0 (0.00%)
+  - tipo_edad: 0 (0.00%)
+  - sexo: 0 (0.00%)
+
+Limitaciones identificadas:
+  - Prototipo académico: No se han inventado casos epidemiológicos ficticios.
+  - Si el modelo requiere variables meteorológicas reales, se deben integrar desde otra fuente.
