@@ -1,0 +1,4 @@
+2026-09-20 22:37:16 | INFO | [APP_INICIO] Inicio de la aplicación | Iniciando pipeline ETL y control de calidad
+2026-09-20 22:37:19 | INFO | [CARGA_DATOS] Carga de dataset epidemiológico | Dataset cargado correctamente. Registros iniciales: 1029421
+2026-09-20 22:37:19 | INFO | [PROCESAMIENTO_ETL] Ejecución del procesamiento ETL | Reporte de calidad de datos generado
+2026-09-20 22:37:19 | INFO | [PREPARACION_MODELADO] Preparación de datos para modelado | Dataset procesado guardado. Registros finales: 3818

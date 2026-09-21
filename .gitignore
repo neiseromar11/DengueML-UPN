@@ -38,5 +38,7 @@ Thumbs.db
 *.sqlite
 *.sqlite3
 
-# --- Dataset (archivo grande, no versionar) ---
+# --- Dataset y Datos Procesados ---
 datos_abiertos_vigilancia_dengue.csv
+data/raw/
+data/processed/
