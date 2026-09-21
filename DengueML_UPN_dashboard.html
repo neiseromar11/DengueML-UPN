@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>DengueML-UPN | Dashboard</title>
+<style>
+:root{
+  --bg:#06121a; --panel:#0b1c27; --panel2:#0e2430; --line:#173645;
+  --green:#17d49a; --green2:#0eb67f; --sky:#35b7ff; --sky2:#258dd9;
+  --text:#f3f7fa; --muted:#9fb6c3; --amber:#ffb440; --red:#ff5b5b; --purple:#a775ff;
+  --shadow:0 12px 30px rgba(0,0,0,.26);
+}
+*{box-sizing:border-box}
+body{margin:0;background:linear-gradient(180deg,#061018 0%,#081821 100%);color:var(--text);font-family:Inter,Segoe UI,Arial,sans-serif;min-height:100vh}
+.app{display:grid;grid-template-columns:255px 1fr;min-height:100vh}
+.sidebar{background:#071722;border-right:1px solid #12303d;padding:18px 16px;position:sticky;top:0;height:100vh;overflow:auto}
+.brand{display:flex;align-items:center;gap:12px;padding:6px 4px 18px;border-bottom:1px solid #15323e;margin-bottom:16px}
+.mosquito{width:44px;height:44px;border:1px solid #1d6b73;border-radius:14px;display:grid;place-items:center;background:#0b2630;font-size:24px}
+.brand h1{font-size:22px;margin:0}.brand b{color:var(--green)}
+.nav{display:grid;gap:6px}.nav button,.field select,.action{width:100%;border:0;color:#cce0ea;background:transparent;text-align:left;padding:11px 12px;border-radius:10px;font-size:14px;cursor:pointer}
+.nav button:hover,.nav button.active{background:linear-gradient(90deg,rgba(23,212,154,.18),rgba(53,183,255,.05));color:#fff;box-shadow:inset 3px 0 0 var(--green)}
+.divider{height:1px;background:#15323e;margin:16px 0}.filter-title{font-weight:700;margin:0 0 12px;color:#d7e9f0}
+.field{margin-bottom:12px}.field label{display:block;font-size:12px;color:var(--muted);margin-bottom:6px}.field select{background:#0d2330;border:1px solid #1c4a5a;outline:none;text-align:left}
+.action{text-align:center;font-weight:700;margin-top:8px}.action.green{background:linear-gradient(90deg,var(--green2),var(--green));color:#052018}.action.blue{background:linear-gradient(90deg,#197bc5,var(--sky));color:#fff}
+.info{font-size:11px;color:#8ca6b2;border:1px solid #174353;background:#0a202c;padding:10px;border-radius:10px;margin-top:12px;line-height:1.45}
+.main{min-width:0}.topbar{height:76px;border-bottom:1px solid #15313d;background:rgba(6,18,26,.8);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:space-between;padding:0 24px;position:sticky;top:0;z-index:5}
+.topbar h2{font-size:18px;margin:0}.topbar p{margin:4px 0 0;color:var(--muted);font-size:12px}.user{display:flex;gap:14px;align-items:center;font-size:12px;color:#c9dae3}.user-badge{width:36px;height:36px;border-radius:50%;background:#153748;display:grid;place-items:center}
+.content{padding:18px}.cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}.card,.panel{background:linear-gradient(180deg,rgba(15,39,51,.98),rgba(8,25,35,.98));border:1px solid #174152;border-radius:14px;box-shadow:var(--shadow)}
+.card{padding:16px;min-height:112px;position:relative;overflow:hidden}.card::after{content:"";position:absolute;right:-24px;top:-24px;width:90px;height:90px;border-radius:50%;background:radial-gradient(circle,rgba(53,183,255,.12),transparent 70%)}
+.card .label{font-size:13px;color:#d9e7ee}.card .value{font-size:32px;font-weight:800;margin-top:8px}.card .sub{font-size:11px;color:var(--muted);margin-top:4px}.green{color:var(--green)}.sky{color:var(--sky)}.amber{color:var(--amber)}
+.grid2{display:grid;grid-template-columns:1.8fr 1fr;gap:14px;margin-top:14px}.grid3{display:grid;grid-template-columns:1fr 1fr 1.15fr;gap:14px;margin-top:14px}.panel{padding:14px}.panel h3{font-size:15px;margin:0 0 12px;display:flex;align-items:center;justify-content:space-between}.tag{font-size:11px;color:#c8e8f3;border:1px solid #275265;background:#0d2a36;padding:6px 9px;border-radius:8px}
+svg{width:100%;height:auto;display:block}.chart-wrap{height:305px}.chart-wrap svg{height:100%}.legend{display:flex;gap:16px;font-size:11px;color:#b7cad3;margin:0 0 8px;flex-wrap:wrap}.dot{width:9px;height:9px;border-radius:50%;display:inline-block;margin-right:6px}.line{width:18px;height:2px;display:inline-block;margin-right:6px;vertical-align:middle}
+.map{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;min-height:248px;align-content:center;padding:10px;background:linear-gradient(145deg,#0a1e29,#0c2531);border-radius:12px;border:1px solid #183d4b}.district{padding:17px 8px;border-radius:12px;text-align:center;font-size:12px;font-weight:700;border:1px solid rgba(255,255,255,.08)}.low{background:linear-gradient(180deg,#1f8f5f,#16754d)}.mid{background:linear-gradient(180deg,#d98a1c,#af6710)}.high{background:linear-gradient(180deg,#ce4e4e,#a73737)}
+.metrics{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.metric{background:#0d2936;border:1px solid #1a4e61;border-radius:12px;padding:12px}.metric b{display:block;font-size:24px;margin-top:6px}.audit{display:grid;gap:8px}.event{display:grid;grid-template-columns:120px 1fr;gap:10px;padding:8px 0;border-bottom:1px solid #143340;font-size:12px}.event:last-child{border-bottom:0}.event time{color:#9db7c3}.event span{color:#d9e6ec}
+.bar-chart{display:flex;align-items:flex-end;justify-content:space-around;height:205px;padding:25px 18px 10px;border-left:1px solid #28424d;border-bottom:1px solid #28424d}.bar{width:60px;border-radius:7px 7px 0 0;position:relative}.bar label{position:absolute;top:-24px;width:100%;text-align:center;font-weight:800}.bar small{position:absolute;bottom:-28px;width:100%;text-align:center;color:#bdcfd8}.footer{display:flex;justify-content:space-between;color:#8098a5;font-size:11px;padding:14px 18px;border-top:1px solid #15323e;margin-top:16px}
+.notice{font-size:11px;color:#b8ccd6;margin-top:8px}.hidden{display:none!important}
+@media(max-width:1100px){.app{grid-template-columns:210px 1fr}.cards{grid-template-columns:repeat(2,1fr)}.grid2,.grid3{grid-template-columns:1fr}.topbar{height:auto;padding:14px 18px;gap:12px}.user{display:none}}
+@media(max-width:760px){.app{display:block}.sidebar{position:relative;height:auto}.cards{grid-template-columns:1fr}.content{padding:12px}.topbar{position:relative}.footer{display:block;line-height:1.7}}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <div class="brand"><div class="mosquito">🦟</div><div><h1>Dengue<b>ML</b>-UPN</h1><div style="font-size:11px;color:#86a3af">Analítica predictiva de dengue</div></div></div>
+    <div class="nav">
+      <button class="active">⌂ &nbsp; Inicio</button><button>▥ &nbsp; Análisis</button><button>⌁ &nbsp; Predicciones</button><button>🗺 &nbsp; Mapas</button><button>▤ &nbsp; Reportes</button><button>◉ &nbsp; Datos</button><button>⚙ &nbsp; Configuración</button>
+    </div>
+    <div class="divider"></div>
+    <div class="filter-title">⚲ Filtros</div>
+    <div class="field"><label>Periodo</label><select id="periodo"><option>Ene 2023 – Dic 2024</option><option>Ene 2024 – Dic 2024</option><option>Últimas 12 semanas</option></select></div>
+    <div class="field"><label>Distrito</label><select id="distrito"><option>Todos los distritos</option><option>Rímac</option><option>Cercado de Lima</option><option>Breña</option><option>La Victoria</option><option>San Luis</option><option>Jesús María</option><option>Lince</option><option>San Isidro</option></select></div>
+    <div class="field"><label>Horizonte de predicción</label><select id="horizonte"><option>4 semanas</option><option>3 semanas</option><option>2 semanas</option></select></div>
+    <div class="field"><label>Fuente de datos</label><select><option>MINSA / DIRIS Lima Centro</option><option>SENAMHI</option><option>INEI</option></select></div>
+    <button class="action green" onclick="actualizar()">⟳ &nbsp; Actualizar</button>
+    <button class="action blue" onclick="descargarReporte()">⬇ &nbsp; Descargar reporte</button>
+    <div class="info">ⓘ Prototipo académico. Los valores mostrados son demostrativos hasta conectar los datos y métricas reales del proyecto.</div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <div><h2>Sistema web de analítica predictiva de dengue</h2><p>DIRIS Lima Centro · Datos para una mejor toma de decisiones</p></div>
+      <div class="user"><div><b>DIRIS LIMA CENTRO</b><div style="color:#8ea7b3">Salud pública con evidencia</div></div><div class="user-badge">👤</div><div><b>Usuario</b><div style="color:#8ea7b3">Analista UPN</div></div></div>
+    </header>
+
+    <section class="content">
+      <div class="cards">
+        <div class="card"><div class="label">Casos semanales</div><div class="value" id="casos">128</div><div class="sub"><span class="green">▼ 24%</span> vs. semana anterior</div></div>
+        <div class="card"><div class="label">Incidencia por 100 000</div><div class="value sky" id="incidencia">36.5</div><div class="sub"><span class="green">▼ 18%</span> vs. periodo anterior</div></div>
+        <div class="card"><div class="label">Riesgo de brote</div><div class="value amber" id="riesgo">MEDIO</div><div class="sub">Tendencia demostrativa</div></div>
+        <div class="card"><div class="label">Calidad de datos</div><div class="value" id="calidad">96%</div><div class="sub">Completitud de datos</div></div>
+      </div>
+
+      <div class="grid2">
+        <div class="panel"><h3>Casos históricos y predicción <span class="tag" id="tagHorizonte">Horizonte: 4 semanas</span></h3>
+          <div class="legend"><span><i class="line" style="background:#17d49a"></i>Casos históricos</span><span><i class="line" style="background:#35b7ff"></i>Predicción</span><span><i class="dot" style="background:#244d68"></i>Zona de pronóstico</span></div>
+          <div class="chart-wrap">
+          <svg viewBox="0 0 900 300" preserveAspectRatio="none" aria-label="Gráfico histórico y predicción">
+            <defs><linearGradient id="fade" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#2d7196" stop-opacity=".6"/><stop offset="1" stop-color="#2d7196" stop-opacity=".06"/></linearGradient></defs>
+            <g stroke="#153846" stroke-width="1"><path d="M55 25V260"/><path d="M55 260H860"/><path d="M55 210H860"/><path d="M55 160H860"/><path d="M55 110H860"/><path d="M55 60H860"/></g>
+            <g fill="#8da6b2" font-size="11"><text x="18" y="265">0</text><text x="10" y="215">50</text><text x="5" y="165">100</text><text x="5" y="115">150</text><text x="5" y="65">200</text></g>
+            <path d="M55 215 C95 165,115 175,145 205 S215 245,260 240 S330 208,365 200 S420 145,445 65 S470 85,500 140 S560 190,610 170 S660 205,700 180 S730 155,755 165" fill="none" stroke="#17d49a" stroke-width="4"/>
+            <path d="M755 155 C780 145,800 130,820 142 S845 135,860 145 L860 215 C845 208,825 204,810 210 S782 198,755 205 Z" fill="url(#fade)"/>
+            <path d="M755 165 C785 160,805 145,825 150 S845 142,860 148" fill="none" stroke="#35b7ff" stroke-width="4" stroke-dasharray="8 7"/>
+            <path d="M755 35V260" stroke="#90aec0" stroke-dasharray="5 6"/><text x="765" y="48" fill="#9fb6c3" font-size="11">Inicio de predicción</text>
+          </svg></div>
+          <div class="notice">Los valores son de ejemplo visual. Sustituir por resultados reales del modelo cuando se complete la HU-04.</div>
+        </div>
+
+        <div class="panel"><h3>Mapa de riesgo por distrito <span class="tag" id="tagDistrito">Lima Centro</span></h3>
+          <div class="map"><div class="district high">Rímac</div><div class="district mid">Cercado de Lima</div><div class="district low">San Luis</div><div class="district mid">Breña</div><div class="district mid">La Victoria</div><div class="district low">Jesús María</div><div class="district low">Lince</div><div class="district low">San Isidro</div><div class="district low">Pueblo Libre</div></div>
+          <div class="legend" style="margin-top:12px"><span><i class="dot" style="background:#ff5b5b"></i>Riesgo alto</span><span><i class="dot" style="background:#ffb440"></i>Riesgo medio</span><span><i class="dot" style="background:#17d49a"></i>Riesgo bajo</span></div>
+        </div>
+      </div>
+
+      <div class="grid3">
+        <div class="panel"><h3>Distribución del riesgo</h3><div class="bar-chart"><div class="bar" style="height:70%;background:linear-gradient(#17d49a,#0f8b67)"><label>7</label><small>Bajo</small></div><div class="bar" style="height:50%;background:linear-gradient(#ffb440,#d77a0a)"><label>5</label><small>Medio</small></div><div class="bar" style="height:20%;background:linear-gradient(#ff6666,#bf3838)"><label>2</label><small>Alto</small></div></div></div>
+        <div class="panel"><h3>Calidad del modelo <span class="tag">Modelo: XGBoost</span></h3><div class="metrics"><div class="metric">R²<b class="green">0.82</b></div><div class="metric">MAE<b class="sky">12.4</b></div><div class="metric">RMSE<b style="color:var(--purple)">18.7</b></div><div class="metric">Recall<b class="green">0.78</b></div></div><div class="notice">Métricas demostrativas; reemplazar por valores obtenidos en la evaluación real.</div></div>
+        <div class="panel"><h3>Auditoría y trazabilidad <span class="tag">Eventos recientes</span></h3><div class="audit"><div class="event"><time>20/09/2026 18:32</time><span>Visualización del dashboard</span></div><div class="event"><time>20/09/2026 18:15</time><span>Filtros actualizados</span></div><div class="event"><time>20/09/2026 17:40</time><span>Carga preliminar de datos</span></div><div class="event"><time>20/09/2026 17:10</time><span>Inicio de sesión · Analista UPN</span></div></div></div>
+      </div>
+    </section>
+
+    <footer class="footer"><span>DengueML-UPN · Universidad Privada del Norte</span><span>Prototipo académico · v1.0.0</span></footer>
+  </main>
+</div>
+<script>
+function actualizar(){
+  const distrito=document.getElementById('distrito').value;
+  const horizonte=document.getElementById('horizonte').value;
+  document.getElementById('tagHorizonte').textContent='Horizonte: '+horizonte;
+  document.getElementById('tagDistrito').textContent=distrito==='Todos los distritos'?'Lima Centro':distrito;
+  const seed=(distrito.length+horizonte.length)%9;
+  document.getElementById('casos').textContent=120+seed;
+  document.getElementById('incidencia').textContent=(34.8+seed*.4).toFixed(1);
+  document.getElementById('calidad').textContent=(94+seed%4)+'%';
+  document.getElementById('riesgo').textContent=seed>5?'ALTO':(seed>2?'MEDIO':'BAJO');
+  document.getElementById('riesgo').className='value '+(seed>5?'':seed>2?'amber':'green');
+}
+function descargarReporte(){
+  const data=`DengueML-UPN - Reporte demostrativo\nPeriodo: ${document.getElementById('periodo').value}\nDistrito: ${document.getElementById('distrito').value}\nHorizonte: ${document.getElementById('horizonte').value}\nNota: datos de demostración académica.`;
+  const blob=new Blob([data],{type:'text/plain;charset=utf-8'}); const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob); a.download='reporte_dengueml_demo.txt'; a.click(); URL.revokeObjectURL(a.href);
+}
+</script>
+</body>
+</html>

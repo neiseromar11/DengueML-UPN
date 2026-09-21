@@ -1,0 +1,4 @@
+__pycache__/
+*.pyc
+.env
+datos_abiertos_vigilancia_dengue.csv
