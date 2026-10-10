@@ -1,27 +1,28 @@
 ==================================================
 REPORTE DE CALIDAD DE DATOS - DengueML-UPN
 ==================================================
-Fecha de evaluación: 2026-09-20 22:37:19
+Fecha de evaluación: 2026-10-10 00:52:34
 
-Total de registros evaluados (Lima): 122854
-Registros duplicados exactos: 25654
+Total de registros originales: 1029421
+Total de registros en Lima: 122854
+Total de registros en DIRIS Centro: 22590
+Descartados fuera del alcance: 1006831
+Registros duplicados exactos eliminados: 2832
+Registros duplicados lógicos eliminados: 0
+Registros finales: 728
 
-Valores faltantes por columna:
+Valores faltantes por columna (en subset DIRIS):
   - departamento: 0 (0.00%)
   - provincia: 0 (0.00%)
   - distrito: 0 (0.00%)
-  - localidad: 48222 (39.25%)
+  - localidad: 5900 (26.12%)
   - enfermedad: 0 (0.00%)
   - ano: 0 (0.00%)
   - semana: 0 (0.00%)
   - diagnostic: 0 (0.00%)
   - diresa: 0 (0.00%)
   - ubigeo: 0 (0.00%)
-  - localcod: 38826 (31.60%)
+  - localcod: 4336 (19.19%)
   - edad: 0 (0.00%)
   - tipo_edad: 0 (0.00%)
   - sexo: 0 (0.00%)
-
-Limitaciones identificadas:
-  - Prototipo académico: No se han inventado casos epidemiológicos ficticios.
-  - Si el modelo requiere variables meteorológicas reales, se deben integrar desde otra fuente.

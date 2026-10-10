@@ -1,0 +1,26 @@
+{
+    "total_raw": 1029421,
+    "total_lima": 122854,
+    "total_diris": 22590,
+    "descartados_fuera_alcance": 1006831,
+    "duplicados_detectados": 2832,
+    "duplicados_logicos": 0,
+    "registros_finales": 728,
+    "faltantes": {
+        "departamento": 0,
+        "provincia": 0,
+        "distrito": 0,
+        "localidad": 5900,
+        "enfermedad": 0,
+        "ano": 0,
+        "semana": 0,
+        "diagnostic": 0,
+        "diresa": 0,
+        "ubigeo": 0,
+        "localcod": 4336,
+        "edad": 0,
+        "tipo_edad": 0,
+        "sexo": 0
+    },
+    "fecha_procesamiento": "2026-10-10T00:52:34"
+}

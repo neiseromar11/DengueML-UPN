@@ -37,6 +37,29 @@ DISTRITOS_VALIDOS = [
     "Todos los distritos (DIRIS Lima Centro)"
 ]
 
+DISTRITOS_DATASET_MAP = {
+    'SAN JUAN DE LURIGANCHO': 'San Juan de Lurigancho',
+    'RIMAC': 'Rímac',
+    'LIMA': 'Cercado de Lima',
+    'LA VICTORIA': 'La Victoria',
+    'BREÑA': 'Breña',
+    'SAN LUIS': 'San Luis',
+    'JESUS MARIA': 'Jesús María',
+    'LINCE': 'Lince',
+    'SAN ISIDRO': 'San Isidro',
+    'PUEBLO LIBRE': 'Pueblo Libre',
+    'MAGDALENA DEL MAR': 'Magdalena',
+    'SAN MIGUEL': 'San Miguel',
+    'MIRAFLORES': 'Miraflores',
+    'SURQUILLO': 'Surquillo',
+}
+
+# Also create the reverse map
+DISTRITOS_DISPLAY_TO_DATASET = {v: k for k, v in DISTRITOS_DATASET_MAP.items()}
+
+# List of valid dataset-level district names
+DISTRITOS_DIRIS_DATASET = list(DISTRITOS_DATASET_MAP.keys())
+
 # Horizontes de predicción permitidos
 HORIZONTES_VALIDOS = ["2 semanas", "3 semanas", "4 semanas"]
 
