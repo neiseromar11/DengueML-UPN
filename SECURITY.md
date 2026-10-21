@@ -57,7 +57,7 @@ Los archivos de log se almacenan en `logs/` (directorio ignorado por Git).
 
 ## Autenticación y Control de Acceso
 
-> **Estado actual:** Autenticación basada en roles planificada para una versión posterior.
+> **Estado actual (decisión de alcance, 20/10/2026):** el dashboard es público e informativo; no tiene login, usuarios ni roles, y no se planifica RBAC dentro de este alcance.
 
 El prototipo actual no implementa un sistema de autenticación real. Este control se encuentra documentado como pendiente en el backlog del proyecto.
 

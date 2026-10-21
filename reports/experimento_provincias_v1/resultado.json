@@ -1,0 +1,15 @@
+{
+  "mejora_2pct_cada_control": {
+    "ultima_semana": false,
+    "promedio_4": true,
+    "estacional_52": true,
+    "cero": true
+  },
+  "no_empeora_horizontes": false,
+  "provincias_mejora_persistencia": 22,
+  "provincias_empata_persistencia": 0,
+  "provincias": 110,
+  "huellas_identicas": true,
+  "archivos_protegidos": 20,
+  "publico_modelo": false
+}

@@ -76,7 +76,12 @@ def main():
         'features_used': feature_cols,
         'cutoff_info': cutoff_info,
         'fecha_entrenamiento': datetime.now().isoformat(),
-        'superacion_baseline': superacion
+        'superacion_baseline': bool(superacion),
+        'n_train': len(df_train), 'n_test': len(df_test),
+        'train_hasta': df_train['semana_epidemiologica'].max(),
+        'test_hasta': df_test['semana_epidemiologica'].max(),
+        'evaluacion': 'Un paso con observaciones previas del test; no mide horizonte recursivo 2 a 4 semanas',
+        'version_pipeline': 2
     }
     
     metricas_path = os.path.join(reports_dir, 'metricas_modelo.json')
@@ -84,6 +89,17 @@ def main():
         json.dump(metricas_completas, f, indent=4)
         
     registrar_evento("EVALUACION_MODELO", "Métricas y modelo guardados exitosamente")
+    # Modelo operativo reentrenado con todo el histórico; las métricas anteriores son del holdout.
+    operativo = entrenar_xgboost(df_features, feature_cols)
+    guardar_modelo(operativo, os.path.join(models_dir, 'xgboost_operativo.json'))
+    metadata = {'version_pipeline': 2, 'datos_hasta': df_features['semana_epidemiologica'].max(),
+                'sha256_datos': __import__('hashlib').sha256(open(data_path, 'rb').read()).hexdigest(),
+                'uso': 'Solo posterior al corte de datos; no backtesting con modelo operativo'}
+    with open(os.path.join(models_dir, 'metadata_operativo.json'), 'w', encoding='utf-8') as f:
+        json.dump(metadata, f, indent=2)
+    pred_test = df_test[['distrito', 'semana_epidemiologica', 'casos_notificados', 'lag_1']].copy()
+    pred_test['prediccion'] = eval_resultados['y_pred']
+    pred_test.to_csv(os.path.join(reports_dir, 'evaluacion_temporal.csv'), index=False)
     print("Proceso finalizado con éxito.")
 
 if __name__ == '__main__':

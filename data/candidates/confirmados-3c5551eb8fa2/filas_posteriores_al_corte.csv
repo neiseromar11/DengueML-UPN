@@ -1,0 +1,169 @@
+﻿Departamento,Provincia,distrito_fuente,ubigeo,tmean,tmax,tmin,humr,ptot,ano,semana,tmean_clima,tmax_clima,tmin_clima,humr_clima,ptot_clima,tipo_caso_fuente,casos_confirmados,distrito,semana_epidemiologica,compatible_calendario_actual,estado_casos,clima_completo
+LIMA METROPOLITANA,LIMA CENTRO,LIMA,150101,,,,,,2026,41,17.2,20.2,14.9,84.1,0.2,,,Cercado de Lima,2026-SE41,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,LIMA,150101,,,,,,2026,42,17.4,20.5,15.2,83.9,0.7,,,Cercado de Lima,2026-SE42,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,LIMA,150101,,,,,,2026,43,17.6,20.7,15.5,84.2,0.7,,,Cercado de Lima,2026-SE43,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,LIMA,150101,,,,,,2026,44,17.8,20.8,15.5,84.5,0.3,,,Cercado de Lima,2026-SE44,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,LIMA,150101,,,,,,2026,45,18.0,21.0,15.8,84.2,0.7,,,Cercado de Lima,2026-SE45,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,LIMA,150101,,,,,,2026,46,18.2,21.4,16.0,84.2,0.5,,,Cercado de Lima,2026-SE46,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,LIMA,150101,,,,,,2026,47,18.5,21.7,16.3,84.6,0.6,,,Cercado de Lima,2026-SE47,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,LIMA,150101,,,,,,2026,48,18.8,22.0,16.6,85.1,0.7,,,Cercado de Lima,2026-SE48,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,LIMA,150101,,,,,,2026,49,19.3,22.4,17.1,85.5,2.1,,,Cercado de Lima,2026-SE49,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,LIMA,150101,,,,,,2026,50,19.6,22.7,17.4,86.1,1.2,,,Cercado de Lima,2026-SE50,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,LIMA,150101,,,,,,2026,51,20.0,23.2,17.9,86.2,1.4,,,Cercado de Lima,2026-SE51,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,LIMA,150101,,,,,,2026,52,20.5,23.6,18.4,86.5,0.8,,,Cercado de Lima,2026-SE52,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,BREÑA,150105,,,,,,2026,41,,,,,0.2,,,Breña,2026-SE41,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,BREÑA,150105,,,,,,2026,42,,,,,0.6,,,Breña,2026-SE42,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,BREÑA,150105,,,,,,2026,43,,,,,0.8,,,Breña,2026-SE43,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,BREÑA,150105,,,,,,2026,44,,,,,0.4,,,Breña,2026-SE44,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,BREÑA,150105,,,,,,2026,45,,,,,0.7,,,Breña,2026-SE45,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,BREÑA,150105,,,,,,2026,46,,,,,0.6,,,Breña,2026-SE46,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,BREÑA,150105,,,,,,2026,47,,,,,0.7,,,Breña,2026-SE47,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,BREÑA,150105,,,,,,2026,48,,,,,0.7,,,Breña,2026-SE48,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,BREÑA,150105,,,,,,2026,49,,,,,2.1,,,Breña,2026-SE49,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,BREÑA,150105,,,,,,2026,50,,,,,1.2,,,Breña,2026-SE50,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,BREÑA,150105,,,,,,2026,51,,,,,1.4,,,Breña,2026-SE51,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,BREÑA,150105,,,,,,2026,52,,,,,0.9,,,Breña,2026-SE52,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,JESUS MARIA,150113,,,,,,2026,41,17.0,19.9,14.8,84.0,0.2,,,Jesús María,2026-SE41,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,JESUS MARIA,150113,,,,,,2026,42,17.2,20.1,15.1,84.1,0.6,,,Jesús María,2026-SE42,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,JESUS MARIA,150113,,,,,,2026,43,17.4,20.3,15.4,84.4,0.8,,,Jesús María,2026-SE43,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,JESUS MARIA,150113,,,,,,2026,44,17.6,20.5,15.5,84.5,0.4,,,Jesús María,2026-SE44,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,JESUS MARIA,150113,,,,,,2026,45,17.8,20.6,15.7,84.2,0.7,,,Jesús María,2026-SE45,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,JESUS MARIA,150113,,,,,,2026,46,18.0,21.0,15.9,84.4,0.6,,,Jesús María,2026-SE46,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,JESUS MARIA,150113,,,,,,2026,47,18.3,21.2,16.2,84.8,0.7,,,Jesús María,2026-SE47,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,JESUS MARIA,150113,,,,,,2026,48,18.6,21.5,16.5,85.3,0.7,,,Jesús María,2026-SE48,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,JESUS MARIA,150113,,,,,,2026,49,19.0,21.9,16.9,85.9,2.1,,,Jesús María,2026-SE49,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,JESUS MARIA,150113,,,,,,2026,50,19.3,22.3,17.2,86.4,1.2,,,Jesús María,2026-SE50,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,JESUS MARIA,150113,,,,,,2026,51,19.8,22.7,17.7,86.8,1.4,,,Jesús María,2026-SE51,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,JESUS MARIA,150113,,,,,,2026,52,20.2,23.0,18.2,87.2,0.9,,,Jesús María,2026-SE52,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,LA VICTORIA,150115,,,,,,2026,41,17.0,19.9,14.8,84.0,0.2,,,La Victoria,2026-SE41,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,LA VICTORIA,150115,,,,,,2026,42,17.2,20.1,15.1,84.1,0.7,,,La Victoria,2026-SE42,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,LA VICTORIA,150115,,,,,,2026,43,17.4,20.3,15.4,84.4,0.7,,,La Victoria,2026-SE43,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,LA VICTORIA,150115,,,,,,2026,44,17.6,20.5,15.5,84.5,0.3,,,La Victoria,2026-SE44,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,LA VICTORIA,150115,,,,,,2026,45,17.8,20.6,15.7,84.2,0.7,,,La Victoria,2026-SE45,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,LA VICTORIA,150115,,,,,,2026,46,18.0,21.0,15.9,84.4,0.5,,,La Victoria,2026-SE46,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,LA VICTORIA,150115,,,,,,2026,47,18.3,21.2,16.2,84.8,0.6,,,La Victoria,2026-SE47,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,LA VICTORIA,150115,,,,,,2026,48,18.6,21.5,16.5,85.3,0.7,,,La Victoria,2026-SE48,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,LA VICTORIA,150115,,,,,,2026,49,19.0,21.9,16.9,85.9,2.1,,,La Victoria,2026-SE49,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,LA VICTORIA,150115,,,,,,2026,50,19.3,22.3,17.2,86.4,1.2,,,La Victoria,2026-SE50,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,LA VICTORIA,150115,,,,,,2026,51,19.8,22.7,17.7,86.8,1.4,,,La Victoria,2026-SE51,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,LA VICTORIA,150115,,,,,,2026,52,20.2,23.0,18.2,87.2,0.8,,,La Victoria,2026-SE52,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,LINCE,150116,,,,,,2026,41,17.0,19.9,14.8,84.0,0.2,,,Lince,2026-SE41,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,LINCE,150116,,,,,,2026,42,17.2,20.1,15.1,84.1,0.6,,,Lince,2026-SE42,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,LINCE,150116,,,,,,2026,43,17.4,20.3,15.4,84.4,0.8,,,Lince,2026-SE43,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,LINCE,150116,,,,,,2026,44,17.6,20.5,15.5,84.5,0.4,,,Lince,2026-SE44,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,LINCE,150116,,,,,,2026,45,17.8,20.6,15.7,84.2,0.7,,,Lince,2026-SE45,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,LINCE,150116,,,,,,2026,46,18.0,21.0,15.9,84.4,0.6,,,Lince,2026-SE46,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,LINCE,150116,,,,,,2026,47,18.3,21.2,16.2,84.8,0.7,,,Lince,2026-SE47,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,LINCE,150116,,,,,,2026,48,18.6,21.5,16.5,85.3,0.7,,,Lince,2026-SE48,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,LINCE,150116,,,,,,2026,49,19.0,21.9,16.9,85.9,2.1,,,Lince,2026-SE49,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,LINCE,150116,,,,,,2026,50,19.3,22.3,17.2,86.4,1.2,,,Lince,2026-SE50,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,LINCE,150116,,,,,,2026,51,19.8,22.7,17.7,86.8,1.4,,,Lince,2026-SE51,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,LINCE,150116,,,,,,2026,52,20.2,23.0,18.2,87.2,0.9,,,Lince,2026-SE52,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,MAGDALENA DEL MAR,150120,,,,,,2026,41,,,,,0.3,,,Magdalena,2026-SE41,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,MAGDALENA DEL MAR,150120,,,,,,2026,42,,,,,0.5,,,Magdalena,2026-SE42,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,MAGDALENA DEL MAR,150120,,,,,,2026,43,,,,,0.8,,,Magdalena,2026-SE43,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,MAGDALENA DEL MAR,150120,,,,,,2026,44,,,,,0.4,,,Magdalena,2026-SE44,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,MAGDALENA DEL MAR,150120,,,,,,2026,45,,,,,0.7,,,Magdalena,2026-SE45,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,MAGDALENA DEL MAR,150120,,,,,,2026,46,,,,,0.7,,,Magdalena,2026-SE46,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,MAGDALENA DEL MAR,150120,,,,,,2026,47,,,,,0.8,,,Magdalena,2026-SE47,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,MAGDALENA DEL MAR,150120,,,,,,2026,48,,,,,0.8,,,Magdalena,2026-SE48,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,MAGDALENA DEL MAR,150120,,,,,,2026,49,,,,,2.3,,,Magdalena,2026-SE49,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,MAGDALENA DEL MAR,150120,,,,,,2026,50,,,,,1.2,,,Magdalena,2026-SE50,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,MAGDALENA DEL MAR,150120,,,,,,2026,51,,,,,1.4,,,Magdalena,2026-SE51,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,MAGDALENA DEL MAR,150120,,,,,,2026,52,,,,,0.9,,,Magdalena,2026-SE52,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,PUEBLO LIBRE,150121,,,,,,2026,41,,,,,0.2,,,Pueblo Libre,2026-SE41,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,PUEBLO LIBRE,150121,,,,,,2026,42,,,,,0.6,,,Pueblo Libre,2026-SE42,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,PUEBLO LIBRE,150121,,,,,,2026,43,,,,,0.8,,,Pueblo Libre,2026-SE43,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,PUEBLO LIBRE,150121,,,,,,2026,44,,,,,0.4,,,Pueblo Libre,2026-SE44,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,PUEBLO LIBRE,150121,,,,,,2026,45,,,,,0.7,,,Pueblo Libre,2026-SE45,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,PUEBLO LIBRE,150121,,,,,,2026,46,,,,,0.6,,,Pueblo Libre,2026-SE46,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,PUEBLO LIBRE,150121,,,,,,2026,47,,,,,0.7,,,Pueblo Libre,2026-SE47,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,PUEBLO LIBRE,150121,,,,,,2026,48,,,,,0.7,,,Pueblo Libre,2026-SE48,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,PUEBLO LIBRE,150121,,,,,,2026,49,,,,,2.1,,,Pueblo Libre,2026-SE49,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,PUEBLO LIBRE,150121,,,,,,2026,50,,,,,1.2,,,Pueblo Libre,2026-SE50,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,PUEBLO LIBRE,150121,,,,,,2026,51,,,,,1.4,,,Pueblo Libre,2026-SE51,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,PUEBLO LIBRE,150121,,,,,,2026,52,,,,,0.9,,,Pueblo Libre,2026-SE52,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,MIRAFLORES,150122,,,,,,2026,41,17.0,19.9,14.8,84.0,0.3,,,Miraflores,2026-SE41,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,MIRAFLORES,150122,,,,,,2026,42,17.2,20.1,15.1,84.1,0.4,,,Miraflores,2026-SE42,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,MIRAFLORES,150122,,,,,,2026,43,17.4,20.3,15.4,84.4,0.7,,,Miraflores,2026-SE43,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,MIRAFLORES,150122,,,,,,2026,44,17.6,20.5,15.5,84.5,0.5,,,Miraflores,2026-SE44,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,MIRAFLORES,150122,,,,,,2026,45,17.8,20.6,15.7,84.2,0.7,,,Miraflores,2026-SE45,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,MIRAFLORES,150122,,,,,,2026,46,18.0,21.0,15.9,84.4,0.9,,,Miraflores,2026-SE46,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,MIRAFLORES,150122,,,,,,2026,47,18.3,21.2,16.2,84.8,0.8,,,Miraflores,2026-SE47,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,MIRAFLORES,150122,,,,,,2026,48,18.6,21.5,16.5,85.3,0.9,,,Miraflores,2026-SE48,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,MIRAFLORES,150122,,,,,,2026,49,19.0,21.9,16.9,85.9,2.5,,,Miraflores,2026-SE49,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,MIRAFLORES,150122,,,,,,2026,50,19.3,22.3,17.2,86.4,1.1,,,Miraflores,2026-SE50,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,MIRAFLORES,150122,,,,,,2026,51,19.8,22.7,17.7,86.8,1.4,,,Miraflores,2026-SE51,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,MIRAFLORES,150122,,,,,,2026,52,20.2,23.0,18.2,87.2,0.9,,,Miraflores,2026-SE52,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,SAN BORJA,150130,,,,,,2026,41,17.0,19.9,14.8,84.0,0.2,,,San Borja,2026-SE41,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,SAN BORJA,150130,,,,,,2026,42,17.2,20.1,15.1,84.1,0.8,,,San Borja,2026-SE42,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,SAN BORJA,150130,,,,,,2026,43,17.4,20.3,15.4,84.4,0.6,,,San Borja,2026-SE43,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,SAN BORJA,150130,,,,,,2026,44,17.6,20.5,15.5,84.5,0.3,,,San Borja,2026-SE44,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,SAN BORJA,150130,,,,,,2026,45,17.8,20.6,15.7,84.2,0.7,,,San Borja,2026-SE45,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,SAN BORJA,150130,,,,,,2026,46,18.0,21.0,15.9,84.4,0.5,,,San Borja,2026-SE46,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,SAN BORJA,150130,,,,,,2026,47,18.3,21.2,16.2,84.8,0.8,,,San Borja,2026-SE47,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,SAN BORJA,150130,,,,,,2026,48,18.6,21.5,16.5,85.3,0.7,,,San Borja,2026-SE48,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,SAN BORJA,150130,,,,,,2026,49,19.0,21.9,16.9,85.9,2.2,,,San Borja,2026-SE49,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,SAN BORJA,150130,,,,,,2026,50,19.3,22.3,17.2,86.4,1.3,,,San Borja,2026-SE50,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,SAN BORJA,150130,,,,,,2026,51,19.8,22.7,17.7,86.8,1.3,,,San Borja,2026-SE51,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,SAN BORJA,150130,,,,,,2026,52,20.2,23.0,18.2,87.2,0.8,,,San Borja,2026-SE52,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,SAN ISIDRO,150131,,,,,,2026,41,17.0,19.9,14.8,84.0,0.3,,,San Isidro,2026-SE41,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,SAN ISIDRO,150131,,,,,,2026,42,17.2,20.1,15.1,84.1,0.5,,,San Isidro,2026-SE42,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,SAN ISIDRO,150131,,,,,,2026,43,17.4,20.3,15.4,84.4,0.8,,,San Isidro,2026-SE43,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,SAN ISIDRO,150131,,,,,,2026,44,17.6,20.5,15.5,84.5,0.4,,,San Isidro,2026-SE44,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,SAN ISIDRO,150131,,,,,,2026,45,17.8,20.6,15.7,84.2,0.7,,,San Isidro,2026-SE45,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,SAN ISIDRO,150131,,,,,,2026,46,18.0,21.0,15.9,84.4,0.7,,,San Isidro,2026-SE46,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,SAN ISIDRO,150131,,,,,,2026,47,18.3,21.2,16.2,84.8,0.8,,,San Isidro,2026-SE47,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,SAN ISIDRO,150131,,,,,,2026,48,18.6,21.5,16.5,85.3,0.8,,,San Isidro,2026-SE48,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,SAN ISIDRO,150131,,,,,,2026,49,19.0,21.9,16.9,85.9,2.3,,,San Isidro,2026-SE49,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,SAN ISIDRO,150131,,,,,,2026,50,19.3,22.3,17.2,86.4,1.2,,,San Isidro,2026-SE50,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,SAN ISIDRO,150131,,,,,,2026,51,19.8,22.7,17.7,86.8,1.4,,,San Isidro,2026-SE51,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,SAN ISIDRO,150131,,,,,,2026,52,20.2,23.0,18.2,87.2,0.9,,,San Isidro,2026-SE52,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,SAN JUAN DE LURIGANCHO,150132,,,,,,2026,41,17.3,20.7,14.8,82.0,0.2,,,San Juan de Lurigancho,2026-SE41,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,SAN JUAN DE LURIGANCHO,150132,,,,,,2026,42,17.6,20.9,15.2,81.9,0.7,,,San Juan de Lurigancho,2026-SE42,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,SAN JUAN DE LURIGANCHO,150132,,,,,,2026,43,17.8,21.1,15.4,82.2,0.4,,,San Juan de Lurigancho,2026-SE43,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,SAN JUAN DE LURIGANCHO,150132,,,,,,2026,44,17.9,21.2,15.4,82.6,0.4,,,San Juan de Lurigancho,2026-SE44,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,SAN JUAN DE LURIGANCHO,150132,,,,,,2026,45,18.1,21.4,15.7,82.3,0.3,,,San Juan de Lurigancho,2026-SE45,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,SAN JUAN DE LURIGANCHO,150132,,,,,,2026,46,18.3,21.7,15.9,82.5,0.5,,,San Juan de Lurigancho,2026-SE46,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,SAN JUAN DE LURIGANCHO,150132,,,,,,2026,47,18.6,22.0,16.1,82.9,0.5,,,San Juan de Lurigancho,2026-SE47,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,SAN JUAN DE LURIGANCHO,150132,,,,,,2026,48,18.9,22.3,16.5,83.5,0.6,,,San Juan de Lurigancho,2026-SE48,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,SAN JUAN DE LURIGANCHO,150132,,,,,,2026,49,19.3,22.6,16.9,84.1,2.3,,,San Juan de Lurigancho,2026-SE49,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,SAN JUAN DE LURIGANCHO,150132,,,,,,2026,50,19.6,22.9,17.2,84.9,1.4,,,San Juan de Lurigancho,2026-SE50,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,SAN JUAN DE LURIGANCHO,150132,,,,,,2026,51,20.0,23.3,17.7,85.2,1.5,,,San Juan de Lurigancho,2026-SE51,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,SAN JUAN DE LURIGANCHO,150132,,,,,,2026,52,20.4,23.7,18.1,85.7,0.7,,,San Juan de Lurigancho,2026-SE52,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,SAN LUIS,150134,,,,,,2026,41,17.0,19.9,14.8,84.0,0.2,,,San Luis,2026-SE41,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,SAN LUIS,150134,,,,,,2026,42,17.2,20.1,15.1,84.1,0.7,,,San Luis,2026-SE42,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,SAN LUIS,150134,,,,,,2026,43,17.4,20.3,15.4,84.4,0.7,,,San Luis,2026-SE43,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,SAN LUIS,150134,,,,,,2026,44,17.6,20.5,15.5,84.5,0.3,,,San Luis,2026-SE44,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,SAN LUIS,150134,,,,,,2026,45,17.8,20.6,15.7,84.2,0.7,,,San Luis,2026-SE45,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,SAN LUIS,150134,,,,,,2026,46,18.0,21.0,15.9,84.4,0.5,,,San Luis,2026-SE46,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,SAN LUIS,150134,,,,,,2026,47,18.3,21.2,16.2,84.8,0.6,,,San Luis,2026-SE47,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,SAN LUIS,150134,,,,,,2026,48,18.6,21.5,16.5,85.3,0.7,,,San Luis,2026-SE48,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,SAN LUIS,150134,,,,,,2026,49,19.0,21.9,16.9,85.9,2.1,,,San Luis,2026-SE49,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,SAN LUIS,150134,,,,,,2026,50,19.3,22.3,17.2,86.4,1.2,,,San Luis,2026-SE50,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,SAN LUIS,150134,,,,,,2026,51,19.8,22.7,17.7,86.8,1.4,,,San Luis,2026-SE51,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,SAN LUIS,150134,,,,,,2026,52,20.2,23.0,18.2,87.2,0.8,,,San Luis,2026-SE52,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,SAN MIGUEL,150136,,,,,,2026,41,,,,,0.5,,,San Miguel,2026-SE41,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,SAN MIGUEL,150136,,,,,,2026,42,,,,,0.7,,,San Miguel,2026-SE42,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,SAN MIGUEL,150136,,,,,,2026,43,,,,,0.8,,,San Miguel,2026-SE43,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,SAN MIGUEL,150136,,,,,,2026,44,,,,,0.6,,,San Miguel,2026-SE44,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,SAN MIGUEL,150136,,,,,,2026,45,,,,,1.0,,,San Miguel,2026-SE45,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,SAN MIGUEL,150136,,,,,,2026,46,,,,,0.6,,,San Miguel,2026-SE46,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,SAN MIGUEL,150136,,,,,,2026,47,,,,,0.7,,,San Miguel,2026-SE47,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,SAN MIGUEL,150136,,,,,,2026,48,,,,,1.0,,,San Miguel,2026-SE48,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,SAN MIGUEL,150136,,,,,,2026,49,,,,,1.9,,,San Miguel,2026-SE49,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,SAN MIGUEL,150136,,,,,,2026,50,,,,,1.3,,,San Miguel,2026-SE50,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,SAN MIGUEL,150136,,,,,,2026,51,,,,,1.5,,,San Miguel,2026-SE51,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,SAN MIGUEL,150136,,,,,,2026,52,,,,,1.0,,,San Miguel,2026-SE52,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,SURQUILLO,150141,,,,,,2026,41,17.0,19.9,14.8,84.0,0.3,,,Surquillo,2026-SE41,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,SURQUILLO,150141,,,,,,2026,42,17.2,20.1,15.1,84.1,0.4,,,Surquillo,2026-SE42,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,SURQUILLO,150141,,,,,,2026,43,17.4,20.3,15.4,84.4,0.7,,,Surquillo,2026-SE43,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,SURQUILLO,150141,,,,,,2026,44,17.6,20.5,15.5,84.5,0.5,,,Surquillo,2026-SE44,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,SURQUILLO,150141,,,,,,2026,45,17.8,20.6,15.7,84.2,0.7,,,Surquillo,2026-SE45,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,SURQUILLO,150141,,,,,,2026,46,18.0,21.0,15.9,84.4,0.9,,,Surquillo,2026-SE46,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,SURQUILLO,150141,,,,,,2026,47,18.3,21.2,16.2,84.8,0.8,,,Surquillo,2026-SE47,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,SURQUILLO,150141,,,,,,2026,48,18.6,21.5,16.5,85.3,0.9,,,Surquillo,2026-SE48,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,SURQUILLO,150141,,,,,,2026,49,19.0,21.9,16.9,85.9,2.5,,,Surquillo,2026-SE49,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,SURQUILLO,150141,,,,,,2026,50,19.3,22.3,17.2,86.4,1.1,,,Surquillo,2026-SE50,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,SURQUILLO,150141,,,,,,2026,51,19.8,22.7,17.7,86.8,1.4,,,Surquillo,2026-SE51,True,posterior_al_ultimo_conteo,False
+LIMA METROPOLITANA,LIMA CENTRO,SURQUILLO,150141,,,,,,2026,52,20.2,23.0,18.2,87.2,0.9,,,Surquillo,2026-SE52,True,posterior_al_ultimo_conteo,False

@@ -30,7 +30,7 @@ BACKUP_PATH = get_config("BACKUP_PATH", "./backups")
 
 # Distritos válidos dentro del alcance de DIRIS Lima Centro
 DISTRITOS_VALIDOS = [
-    "San Juan de Lurigancho", "Rímac", "Cercado de Lima",
+    "San Juan de Lurigancho", "San Borja", "Cercado de Lima",
     "La Victoria", "Breña", "San Luis", "Jesús María",
     "Lince", "San Isidro", "Pueblo Libre", "Magdalena",
     "San Miguel", "Miraflores", "Surquillo",
@@ -39,7 +39,7 @@ DISTRITOS_VALIDOS = [
 
 DISTRITOS_DATASET_MAP = {
     'SAN JUAN DE LURIGANCHO': 'San Juan de Lurigancho',
-    'RIMAC': 'Rímac',
+    'SAN BORJA': 'San Borja',
     'LIMA': 'Cercado de Lima',
     'LA VICTORIA': 'La Victoria',
     'BREÑA': 'Breña',

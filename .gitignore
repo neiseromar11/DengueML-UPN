@@ -22,6 +22,9 @@ backups/
 
 # --- Entornos virtuales ---
 .venv/
+.runtime-envs/
+dist/
+wheelhouse/
 venv/
 env/
 
@@ -42,3 +45,7 @@ Thumbs.db
 datos_abiertos_vigilancia_dengue.csv
 data/raw/
 data/processed/
+.pytest_cache/
+reports/test_tmp/
+reports/pytest_*/
+

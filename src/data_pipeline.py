@@ -1,176 +1,104 @@
-import os
-import sys
-import pandas as pd
-import numpy as np
+"""Conteos de registros, sin eliminar casos por atributos coincidentes."""
+from pathlib import Path
 from datetime import datetime
+import hashlib
 import json
 import unicodedata
-
-# Añadir el path de src para poder importar modules internos si se ejecuta como script
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from audit import registrar_evento
-from config import DISTRITOS_DIRIS_DATASET, DISTRITOS_DATASET_MAP
+import pandas as pd
+try:
+    from .config import DISTRITOS_DATASET_MAP, DISTRITOS_DIRIS_DATASET
+    from .calendar_epi import fecha_semana, siguiente_semana
+    from .audit import registrar_evento
+except ImportError:
+    from config import DISTRITOS_DATASET_MAP, DISTRITOS_DIRIS_DATASET
+    from calendar_epi import fecha_semana, siguiente_semana
+    from audit import registrar_evento
 
 def normalize_district_name(name):
-    """Normalize district name for fuzzy matching (remove accents, uppercase, replace weird chars)"""
     if pd.isna(name):
-        return ""
-    name_str = str(name).strip().upper()
-    # Handle \ufffd and other weird characters commonly found for 'Ñ'
-    name_str = name_str.replace('\ufffd', 'N').replace('Ñ', 'N')
-    # Remove accents
-    name_str = ''.join(c for c in unicodedata.normalize('NFD', name_str) if unicodedata.category(c) != 'Mn')
-    return name_str
+        return ''
+    value = str(name).strip().upper().replace('\ufffd', 'N')
+    return ''.join(c for c in unicodedata.normalize('NFD', value) if unicodedata.category(c) != 'Mn')
 
 def match_district(raw_name, valid_districts):
-    norm_raw = normalize_district_name(raw_name)
-    for vd in valid_districts:
-        if normalize_district_name(vd) == norm_raw:
-            return vd
-    return None
+    return next((x for x in valid_districts if normalize_district_name(x) == normalize_district_name(raw_name)), None)
+
+def preparar_datos(df, ano_inicio=None, ano_fin=None):
+    df = df.copy()
+    df.columns = df.columns.str.strip().str.lower().str.replace('\ufeff', '', regex=False)
+    requeridas = {'departamento', 'provincia', 'distrito', 'ano', 'semana'}
+    if not requeridas.issubset(df.columns):
+        raise ValueError(f'Faltan columnas: {sorted(requeridas - set(df.columns))}')
+    total_raw = len(df)
+    lima = df.departamento.map(normalize_district_name).eq('LIMA') & df.provincia.map(normalize_district_name).eq('LIMA')
+    df = df[lima].copy()
+    df['distrito'] = df.distrito.map(lambda x: match_district(x, DISTRITOS_DIRIS_DATASET))
+    df = df[df.distrito.notna()].copy()
+    for col in ('ano', 'semana'):
+        df[col] = pd.to_numeric(df[col], errors='coerce')
+    def valida(row):
+        a, s = row
+        try:
+            if pd.isna(a) or pd.isna(s) or a != int(a) or s != int(s):
+                return False
+            fecha_semana(a, s)
+            return True
+        except (ValueError, OverflowError):
+            return False
+    validos = df[['ano', 'semana']].apply(valida, axis=1)
+    invalidos = int((~validos).sum())
+    if not validos.any():
+        raise ValueError('No hay fechas válidas en el alcance.')
+    ano_inicio = int(df.loc[validos, 'ano'].min()) if ano_inicio is None else ano_inicio
+    ano_fin = int(df.loc[validos, 'ano'].max()) if ano_fin is None else ano_fin
+    df = df[validos & df.ano.between(ano_inicio, ano_fin)].copy()
+    if df.empty:
+        raise ValueError('No hay registros válidos en el alcance y periodo seleccionados.')
+    df[['ano', 'semana']] = df[['ano', 'semana']].astype(int)
+    coincidencias = int(df.duplicated().sum())
+    faltantes = {c: int(n) for c, n in df.isna().sum().items()}
+    conteos = df.groupby(['distrito', 'ano', 'semana']).size()
+    fin = max(zip(df.ano, df.semana))
+    semanas = []
+    par = (ano_inicio, 1)
+    while par <= fin:
+        semanas.append(par)
+        par = siguiente_semana(*par)
+    indice = pd.MultiIndex.from_tuples([(d, a, s) for d in DISTRITOS_DIRIS_DATASET for a, s in semanas], names=['distrito', 'ano', 'semana'])
+    out = conteos.reindex(indice).rename('casos_notificados').reset_index()
+    out['sin_registros_fuente'] = out.casos_notificados.isna()
+    out['casos_notificados'] = out.casos_notificados.fillna(0).astype(int)
+    out['distrito'] = out.distrito.map(DISTRITOS_DATASET_MAP)
+    out['semana_epidemiologica'] = out.ano.astype(str) + '-SE' + out.semana.astype(str).str.zfill(2)
+    reporte = dict(total_raw=total_raw, registros_fuente_en_periodo=len(df), registros_finales=len(out),
+                   filas_fecha_invalida=invalidos, coincidencias_exactas_conservadas=coincidencias,
+                   faltantes=faltantes, completitud_pct=100 * (1 - sum(faltantes.values()) / df.size),
+                   semanas_sin_registros=int(out.sin_registros_fuente.sum()),
+                   inicio=out.semana_epidemiologica.min(), fin=out.semana_epidemiologica.max(),
+                   politica_ceros='Cero significa ausencia de registros en el archivo, no ausencia confirmada de transmisión. Cobertura de notificación pendiente de validar.',
+                   politica_duplicados='Se conservan coincidencias sin identificador único de caso.',
+                   fecha_procesamiento=datetime.now().isoformat())
+    return out, reporte
 
 def ejecutar_etl_calidad():
-    """
-    Ejecuta el pipeline ETL para el proyecto DengueML-UPN.
-    Carga datos, estandariza, limpia duplicados, evalúa calidad y guarda procesado.
-    """
-    registrar_evento("APP_INICIO", "Iniciando pipeline ETL y control de calidad")
-    
-    BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    ruta_raw = os.path.join(BASE_DIR, 'data', 'raw', 'datos_abiertos_vigilancia_dengue.csv')
-    ruta_processed = os.path.join(BASE_DIR, 'data', 'processed', 'dengue_processed.csv')
-    ruta_reporte_txt = os.path.join(BASE_DIR, 'reports', 'calidad_datos.txt')
-    ruta_reporte_json = os.path.join(BASE_DIR, 'reports', 'calidad_datos.json')
-    
-    # Crear directorios si no existen
-    os.makedirs(os.path.dirname(ruta_processed), exist_ok=True)
-    os.makedirs(os.path.dirname(ruta_reporte_txt), exist_ok=True)
-    
-    # 1. Cargar datos
-    if not os.path.exists(ruta_raw):
-        ruta_raw = os.path.join(BASE_DIR, 'datos_abiertos_vigilancia_dengue.csv')
-        if not os.path.exists(ruta_raw):
-            msg = f"No se encontró el archivo de datos raw en {ruta_raw}."
-            print("Error:", msg)
-            registrar_evento("ERROR", msg, nivel="ERROR")
-            return None
-
+    base = Path(__file__).resolve().parents[1]
+    raw = base / 'data/raw/datos_abiertos_vigilancia_dengue.csv'
+    if not raw.exists():
+        raw = base / 'datos_abiertos_vigilancia_dengue.csv'
     try:
-        try:
-            df = pd.read_csv(ruta_raw, sep=';', encoding='utf-8-sig', low_memory=False, on_bad_lines='skip')
-        except UnicodeDecodeError:
-            df = pd.read_csv(ruta_raw, sep=';', encoding='latin-1', low_memory=False, on_bad_lines='skip')
-        
-        total_raw = len(df)
-        registrar_evento("CARGA_DATOS", f"Dataset cargado correctamente. Registros iniciales: {total_raw}")
-    except Exception as e:
-        registrar_evento("ERROR", "Error inesperado al cargar el dataset", nivel="ERROR")
-        print("Error inesperado al cargar el dataset. Consulte los logs.")
-        return None
+        df = pd.read_csv(raw, sep=';', encoding='utf-8-sig', low_memory=False)
+    except UnicodeDecodeError:
+        df = pd.read_csv(raw, sep=';', encoding='latin-1', low_memory=False)
+    out, reporte = preparar_datos(df)
+    reporte['sha256_fuente'] = hashlib.sha256(raw.read_bytes()).hexdigest()
+    for folder in ('data/processed', 'reports'):
+        (base / folder).mkdir(parents=True, exist_ok=True)
+    out.to_csv(base / 'data/processed/dengue_processed.csv', index=False, encoding='utf-8')
+    for nombre in ('calidad_datos.json', 'calidad_datos.txt'):
+        (base / 'reports' / nombre).write_text(json.dumps(reporte, ensure_ascii=False, indent=2), encoding='utf-8')
+    registrar_evento('PROCESAMIENTO_ETL', f'Generadas {len(out)} filas distrito-semana')
+    print(json.dumps(reporte, ensure_ascii=False, indent=2))
+    return out
 
-    # 2. Estandarizar columnas
-    df.columns = df.columns.str.strip().str.lower()
-    df.rename(columns=lambda x: x.replace('ï»¿', '').replace('\ufeff', ''), inplace=True)
-    
-    columnas_requeridas = ['departamento', 'distrito', 'ano', 'semana']
-    faltantes_cols = [col for col in columnas_requeridas if col not in df.columns]
-    if faltantes_cols:
-        msg = f"Faltan columnas requeridas para el análisis: {faltantes_cols}"
-        print("Error:", msg)
-        registrar_evento("ERROR", msg, nivel="ERROR")
-        return None
-
-    # 3. Filtrar departamento LIMA
-    df_lima = df[df['departamento'] == 'LIMA'].copy()
-    total_lima = len(df_lima)
-
-    # 4. Handle encoding and filter DIRIS Lima Centro districts
-    df_lima['distrito_matched'] = df_lima['distrito'].apply(lambda x: match_district(x, DISTRITOS_DIRIS_DATASET))
-    
-    df_diris = df_lima[df_lima['distrito_matched'].notna()].copy()
-    total_diris = len(df_diris)
-    
-    # 5. Report how many records were discarded
-    descartados_fuera_alcance = total_raw - total_diris
-    
-    df_diris['distrito'] = df_diris['distrito_matched']
-    df_diris.drop(columns=['distrito_matched'], inplace=True)
-
-    # 6. Eliminar duplicados exactos
-    duplicados_detectados = int(df_diris.duplicated().sum())
-    if duplicados_detectados > 0:
-        df_diris = df_diris.drop_duplicates()
-
-    faltantes_dict = df_diris.isnull().sum().to_dict()
-    faltantes_dict_int = {k: int(v) for k, v in faltantes_dict.items()}
-
-    # 7. Group by distrito, ano, semana
-    df_agrupado = df_diris.groupby(['distrito', 'ano', 'semana']).size().reset_index(name='casos_notificados')
-    
-    # 8. Map district names to display names
-    df_agrupado['distrito'] = df_agrupado['distrito'].map(DISTRITOS_DATASET_MAP)
-    
-    # 9. Generate semana_epidemiologica
-    df_agrupado['semana_epidemiologica'] = (
-        df_agrupado['ano'].astype(str) + "-SE" + 
-        df_agrupado['semana'].astype(str).str.zfill(2)
-    )
-    
-    df_agrupado = df_agrupado.sort_values(by=['distrito', 'ano', 'semana']).reset_index(drop=True)
-    
-    # 10. Remove logical duplicates
-    clave_logica = ['distrito', 'ano', 'semana_epidemiologica']
-    duplicados_logicos = int(df_agrupado.duplicated(subset=clave_logica).sum())
-    if duplicados_logicos > 0:
-        df_agrupado = df_agrupado.drop_duplicates(subset=clave_logica, keep='last')
-        registrar_evento("PROCESAMIENTO_ETL", f"Se eliminaron {duplicados_logicos} duplicados lógicos")
-    
-    registros_finales = len(df_agrupado)
-
-    # 11. Save processed data
-    df_agrupado.to_csv(ruta_processed, index=False, encoding='utf-8')
-    registrar_evento("PREPARACION_MODELADO", f"Dataset procesado guardado. Registros finales: {registros_finales}")
-
-    # 12 & 13. Generate reports
-    with open(ruta_reporte_txt, "w", encoding="utf-8") as f:
-        f.write("="*50 + "\n")
-        f.write("REPORTE DE CALIDAD DE DATOS - DengueML-UPN\n")
-        f.write("="*50 + "\n")
-        f.write(f"Fecha de evaluación: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n\n")
-        f.write(f"Total de registros originales: {total_raw}\n")
-        f.write(f"Total de registros en Lima: {total_lima}\n")
-        f.write(f"Total de registros en DIRIS Centro: {total_diris}\n")
-        f.write(f"Descartados fuera del alcance: {descartados_fuera_alcance}\n")
-        f.write(f"Registros duplicados exactos eliminados: {duplicados_detectados}\n")
-        f.write(f"Registros duplicados lógicos eliminados: {duplicados_logicos}\n")
-        f.write(f"Registros finales: {registros_finales}\n\n")
-        f.write("Valores faltantes por columna (en subset DIRIS):\n")
-        for col, val in faltantes_dict_int.items():
-            if total_diris > 0:
-                f.write(f"  - {col}: {val} ({(val/total_diris)*100:.2f}%)\n")
-            else:
-                f.write(f"  - {col}: {val} (0%)\n")
-    
-    reporte_json = {
-        "total_raw": total_raw,
-        "total_lima": total_lima,
-        "total_diris": total_diris,
-        "descartados_fuera_alcance": descartados_fuera_alcance,
-        "duplicados_detectados": duplicados_detectados,
-        "duplicados_logicos": duplicados_logicos,
-        "registros_finales": registros_finales,
-        "faltantes": faltantes_dict_int,
-        "fecha_procesamiento": datetime.now().strftime('%Y-%m-%dT%H:%M:%S')
-    }
-    
-    with open(ruta_reporte_json, "w", encoding="utf-8") as f:
-        json.dump(reporte_json, f, indent=4, ensure_ascii=False)
-        
-    registrar_evento("PROCESAMIENTO_ETL", "Reportes de calidad de datos generados (txt y json)")
-
-    print(f"ETL completado con éxito. Datos procesados guardados en {ruta_processed}")
-    print(f"Reporte de calidad disponible en {ruta_reporte_txt} y {ruta_reporte_json}")
-    return df_agrupado
-
-if __name__ == "__main__":
+if __name__ == '__main__':
     ejecutar_etl_calidad()

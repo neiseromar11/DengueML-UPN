@@ -1,9 +1,9 @@
 {
-    "r2": 0.7801938652992249,
-    "mae": 8.515313148498535,
-    "rmse": 26.82058672121683,
-    "baseline_mae": 8.932835820895523,
-    "baseline_rmse": 28.965883174170635,
+    "r2": 0.16466546058654785,
+    "mae": 0.25037312507629395,
+    "rmse": 0.3894629742171837,
+    "baseline_mae": 0.18214285714285713,
+    "baseline_rmse": 0.5035587637718447,
     "features_used": [
         "lag_1",
         "lag_2",
@@ -16,8 +16,14 @@
         "trimestre"
     ],
     "cutoff_info": {
-        "semana_epidemiologica": "2024-SE20"
+        "semana_epidemiologica": "2024-SE33"
     },
-    "fecha_entrenamiento": "2026-10-10T01:18:41.959722",
-    "superacion_baseline": true
+    "fecha_entrenamiento": "2026-10-10T02:53:04.692644",
+    "superacion_baseline": false,
+    "n_train": 1120,
+    "n_test": 280,
+    "train_hasta": "2024-SE32",
+    "test_hasta": "2024-SE52",
+    "evaluacion": "Un paso con observaciones previas del test; no mide horizonte recursivo 2 a 4 semanas",
+    "version_pipeline": 2
 }

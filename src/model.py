@@ -8,22 +8,19 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from features import obtener_feature_columns, TARGET
 
 def separar_temporal(df, ratio_test=0.2):
-    """
-    Separa el dataset en train y test de forma temporal, sin mezclar datos.
-    """
+    """Partición por semanas completas, nunca por filas de distritos."""
+    if not 0 < ratio_test < 1:
+        raise ValueError('ratio_test debe estar entre 0 y 1.')
     df = df.sort_values(['ano', 'semana']).copy()
-    n_test = int(len(df) * ratio_test)
-    n_train = len(df) - n_test
-    
-    df_train = df.iloc[:n_train].copy()
-    df_test = df.iloc[n_train:].copy()
-    
-    cutoff_semana = df_test['semana_epidemiologica'].iloc[0] if not df_test.empty else None
-    cutoff_info = {'semana_epidemiologica': cutoff_semana}
-    
-    return df_train, df_test, cutoff_info
+    semanas = sorted(set(zip(df.ano, df.semana)))
+    if len(semanas) < 2:
+        raise ValueError('Se necesitan al menos dos semanas distintas.')
+    n_test = max(1, int(np.ceil(len(semanas) * ratio_test)))
+    corte = semanas[-n_test]
+    mask = pd.Series([tuple(x) >= corte for x in zip(df.ano, df.semana)], index=df.index)
+    return df[~mask].copy(), df[mask].copy(), {'semana_epidemiologica': f'{corte[0]}-SE{corte[1]:02d}'}
 
-def entrenar_xgboost(df_train, feature_cols=None):
+def entrenar_xgboost(df_train, feature_cols=None, params=None):
     """
     Entrena un modelo XGBoost con los datos de entrenamiento.
     """
@@ -33,15 +30,11 @@ def entrenar_xgboost(df_train, feature_cols=None):
     X_train = df_train[feature_cols]
     y_train = df_train[TARGET]
     
-    modelo = xgb.XGBRegressor(
-        n_estimators=200, 
-        max_depth=5, 
-        learning_rate=0.05, 
-        subsample=0.8, 
-        colsample_bytree=0.8, 
-        objective='reg:squarederror', 
-        random_state=42
-    )
+    opciones = dict(n_estimators=200, max_depth=5, learning_rate=0.05,
+                    subsample=0.8, colsample_bytree=0.8,
+                    objective='reg:squarederror', random_state=42, n_jobs=1)
+    opciones.update(params or {})
+    modelo = xgb.XGBRegressor(**opciones)
     
     modelo.fit(X_train, y_train)
     return modelo
@@ -93,52 +86,54 @@ def cargar_modelo(ruta):
     Carga un modelo guardado desde la ruta especificada.
     """
     modelo = xgb.XGBRegressor()
-    modelo.load_model(ruta)
+    from pathlib import Path
+    modelo.load_model(bytearray(Path(ruta).read_bytes()))
+    modelo.set_params(n_jobs=1)
     return modelo
 
 def predecir_multistep(modelo, ultimo_registro, horizonte=4, feature_cols=None):
-    """
-    Predicción autorregresiva a varios pasos.
-    """
-    if feature_cols is None:
-        feature_cols = obtener_feature_columns()
-        
-    predicciones = []
-    current_state = ultimo_registro.copy() if isinstance(ultimo_registro, pd.Series) else pd.Series(ultimo_registro)
+    """Pronostica desde t+1 usando el observado en t y actualiza todos los rezagos.
     
+    Implementa arquitectura híbrida epidemiológica (Hurdle / Umbral Basal):
+    1. Si los 2 últimos rezagos observados son 0, la transmisión local está inactiva y se infiere 0.
+    2. Las predicciones fraccionarias de ruido residual (< 0.5 casos) se truncan a 0.
+    3. En presencia de brote o transmisión activa, infiere la dinámica completa mediante XGBoost.
+    """
+    from calendar_epi import siguiente_semana, fecha_semana
+    if horizonte not in (1, 2, 3, 4):
+        raise ValueError('Horizonte permitido: 1 a 4 semanas.')
+    feature_cols = feature_cols or obtener_feature_columns()
+    fila = ultimo_registro
+    historia = [float(fila['lag_3']), float(fila['lag_2']), float(fila['lag_1']), float(fila[TARGET])]
+    if not np.isfinite(historia).all() or min(historia) < 0:
+        raise ValueError('Historia inválida para pronosticar.')
+    ano, semana = int(fila['ano']), int(fila['semana'])
+    predicciones = []
     for _ in range(horizonte):
-        X = pd.DataFrame([current_state[feature_cols]])
-        pred = modelo.predict(X)[0]
-        pred = max(0, pred)
+        ano, semana = siguiente_semana(ano, semana)
+        fecha = fecha_semana(ano, semana)
+        
+        # Umbral basal epidemiológico: 2 semanas consecutivas en 0 indican ausencia de transmisión local
+        if historia[-1] == 0.0 and historia[-2] == 0.0:
+            pred = 0.0
+        else:
+            valores = {f'lag_{i}': historia[-i] for i in range(1, 5)}
+            valores.update(media_movil_3=np.mean(historia[-3:]), media_movil_4=np.mean(historia[-4:]),
+                           crecimiento_semanal=(historia[-1] / historia[-2] - 1) if historia[-2] else 0,
+                           mes=fecha.month, trimestre=(fecha.month - 1) // 3 + 1)
+            p_raw = float(modelo.predict(pd.DataFrame([valores])[feature_cols])[0])
+            if not np.isfinite(p_raw):
+                raise ValueError('El modelo devolvió una predicción no finita.')
+            # Amortiguación epidemiológica autorregresiva: previene explosión en proyecciones iteradas a varias semanas
+            if historia[-1] > 20:
+                p_raw = min(p_raw, historia[-1] * 1.3)
+            # Truncamiento de ruido residual continuo (< 0.5 casos esperados se redondea a nivel basal 0)
+            pred = 0.0 if p_raw < 0.5 else max(0.0, p_raw)
+            
         predicciones.append(pred)
-        
-        # Actualizar lags y otras features para el siguiente paso
-        current_state['lag_4'] = current_state['lag_3']
-        current_state['lag_3'] = current_state['lag_2']
-        current_state['lag_2'] = current_state['lag_1']
-        current_state['lag_1'] = pred
-        
-        # Actualizar medias móviles aproximadamente
-        current_state['media_movil_3'] = (pred + current_state['lag_1'] + current_state['lag_2']) / 3
-        current_state['media_movil_4'] = (pred + current_state['lag_1'] + current_state['lag_2'] + current_state['lag_3']) / 4
-        
-        # Actualizar semana
-        semana_actual = current_state.get('semana', 1)
-        nueva_semana = (semana_actual % 52) + 1
-        current_state['semana'] = nueva_semana
-        current_state['mes'] = (nueva_semana - 1) // 4 + 1
-        current_state['trimestre'] = (current_state['mes'] - 1) // 3 + 1
-        
+        historia.append(pred)
     return predicciones
 
-def clasificar_riesgo(prediccion, referencia_historica):
-    """
-    Clasifica el riesgo basado en la predicción comparada con un valor histórico de referencia.
-    Nota: Esta es una clasificación académica preliminar.
-    """
-    if prediccion > referencia_historica * 1.5:
-        return 'ALTO'
-    elif prediccion > referencia_historica * 0.8:
-        return 'MEDIO'
-    else:
-        return 'BAJO'
+def clasificar_riesgo(prediccion, referencia_historica, n_semanas=0):
+    from risk import evaluar_riesgo
+    return evaluar_riesgo(prediccion, referencia_historica, n_semanas)['nivel']

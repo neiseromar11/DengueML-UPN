@@ -1,0 +1,13 @@
+{
+  "criterios": {
+    "mae_mejora_2pct_todas_referencias": false,
+    "sin_empeorar_horizontes": false,
+    "sin_empeorar_positivos": false,
+    "sensibilidad_y_falsos_positivos": false,
+    "desglose_completo": true
+  },
+  "cumple_todos": false,
+  "provisional": true,
+  "publicado": false,
+  "archivos_protegidos_intactos": true
+}
