@@ -1,0 +1,12 @@
+{
+  "candidato": "xgb_sin_reglas",
+  "supera_criterio_por_referencia": {
+    "cero": false,
+    "ultima_semana": false,
+    "promedio_4": false,
+    "estacional_52": true
+  },
+  "supera_todas": false,
+  "provisional": true,
+  "publicado": false
+}

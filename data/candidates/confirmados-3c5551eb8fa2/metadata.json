@@ -1,0 +1,40 @@
+{
+  "generado_utc": "2026-10-20T07:14:03.168390+00:00",
+  "fuente_archivo": "clima_departamento confirmado.xlsx",
+  "fuente_sha256": "3c5551eb8fa2010d63c3ed56158835963499df8f7af5a7327045ce93909063a1",
+  "hoja": "Distrito",
+  "version": "confirmados-3c5551eb8fa2",
+  "objetivo": "casos_confirmados",
+  "unidad": "conteo semanal por distrito",
+  "ultimo_conteo_no_nulo": "2026-SE40",
+  "nota_corte": "Último conteo presente; no certifica completitud ni corte oficial.",
+  "filas_exportadas_14_distritos": 6580,
+  "filas_panel_hasta_corte": 6412,
+  "filas_posteriores_separadas": 168,
+  "semanas_con_14_conteos": 20,
+  "calendario_incompatible": [],
+  "faltantes_casos_panel": 5575,
+  "politica_faltantes": "Se mantienen vacíos. No se imputan como cero.",
+  "columnas_climatologicas_excluidas_como_features": [
+    "tmean_clima",
+    "tmax_clima",
+    "tmin_clima",
+    "humr_clima",
+    "ptot_clima"
+  ],
+  "nota_clima": "No usar clima contemporáneo futuro. Evaluar rezagos y fecha de disponibilidad. Normales *_clima requieren conocer periodo de cálculo.",
+  "listo_para_entrenar": false,
+  "bloqueos": [
+    "Significado de casos vacíos pendiente de documentación",
+    "Calendario semanal de la fuente pendiente de conciliación",
+    "Definir cobertura y periodo final reservado antes de entrenar"
+  ],
+  "modelo_activo_sha256_antes": "486501c718db9f8dc676c8d364f3e0316bc1f8a7e55fa171d44132f5580712f9",
+  "salidas_sha256": {
+    "cobertura_anual.csv": "08376e729af6c5f86af44e7917b3b425498c1bdc8060802a72354b8f769a1f3c",
+    "cobertura_distrital.csv": "607f0ced1c02d605f57e791110c53aef10e1691a2839b12fb0d8cc051f84e36e",
+    "cobertura_semanal.csv": "415dc2df24476ade31afa2cb6e5c3dcf418ecef5c977d32eeb007b71ed3fb617",
+    "filas_posteriores_al_corte.csv": "26d44fa4794daa7131763d518fb7636e3bb253583cf6903b526ed5a438289a65",
+    "panel_candidato.csv": "16e8505e176b26fb0f17ad776e9209220c23f29292c23d78b62758be38e4eebf"
+  }
+}

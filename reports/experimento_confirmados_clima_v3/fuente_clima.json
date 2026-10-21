@@ -1,0 +1,8 @@
+{
+  "archivo": "clima_departamento confirmado.xlsx",
+  "sha256": "3c5551eb8fa2010d63c3ed56158835963499df8f7af5a7327045ce93909063a1",
+  "hoja": "Provincia",
+  "filtro": "Provincia = LIMA CENTRO",
+  "filas": 470,
+  "csv_sha256": "7fcfa6893dfef1bad080f631030e19f064ab3fa77a04cb9ee034ba58aa6d6cf8"
+}

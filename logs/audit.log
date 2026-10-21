@@ -2,3 +2,11 @@
 2026-09-20 22:37:19 | INFO | [CARGA_DATOS] Carga de dataset epidemiológico | Dataset cargado correctamente. Registros iniciales: 1029421
 2026-09-20 22:37:19 | INFO | [PROCESAMIENTO_ETL] Ejecución del procesamiento ETL | Reporte de calidad de datos generado
 2026-09-20 22:37:19 | INFO | [PREPARACION_MODELADO] Preparación de datos para modelado | Dataset procesado guardado. Registros finales: 3818
+2026-10-10 00:52:28 | INFO | [APP_INICIO] Inicio de la aplicación | Iniciando pipeline ETL y control de calidad
+2026-10-10 00:52:30 | INFO | [CARGA_DATOS] Carga de dataset epidemiológico | Dataset cargado correctamente. Registros iniciales: 1029421
+2026-10-10 00:52:34 | INFO | [PREPARACION_MODELADO] Preparación de datos para modelado | Dataset procesado guardado. Registros finales: 728
+2026-10-10 00:52:34 | INFO | [PROCESAMIENTO_ETL] Ejecución del procesamiento ETL | Reportes de calidad de datos generados (txt y json)
+2026-10-10 01:18:41 | INFO | [ENTRENAMIENTO_MODELO] Entrenamiento del modelo predictivo | Iniciando entrenamiento de XGBoost
+2026-10-10 01:18:41 | INFO | [ENTRENAMIENTO_MODELO] Entrenamiento del modelo predictivo | Modelo XGBoost entrenado exitosamente
+2026-10-10 01:18:41 | INFO | [EVALUACION_MODELO] Evaluación del modelo predictivo | Evaluando modelo en conjunto de prueba
+2026-10-10 01:18:41 | INFO | [EVALUACION_MODELO] Evaluación del modelo predictivo | Métricas y modelo guardados exitosamente

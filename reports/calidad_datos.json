@@ -1,0 +1,31 @@
+{
+  "total_raw": 1029421,
+  "registros_fuente_en_periodo": 18996,
+  "registros_finales": 1456,
+  "filas_fecha_invalida": 0,
+  "coincidencias_exactas_conservadas": 2256,
+  "faltantes": {
+    "departamento": 0,
+    "provincia": 0,
+    "distrito": 0,
+    "localidad": 5430,
+    "enfermedad": 0,
+    "ano": 0,
+    "semana": 0,
+    "diagnostic": 0,
+    "diresa": 0,
+    "ubigeo": 0,
+    "localcod": 4124,
+    "edad": 0,
+    "tipo_edad": 0,
+    "sexo": 0
+  },
+  "completitud_pct": 96.40751436392624,
+  "semanas_sin_registros": 862,
+  "inicio": "2023-SE01",
+  "fin": "2024-SE52",
+  "politica_ceros": "Cero significa ausencia de registros en el archivo, no ausencia confirmada de transmisión. Cobertura de notificación pendiente de validar.",
+  "politica_duplicados": "Se conservan coincidencias sin identificador único de caso.",
+  "fecha_procesamiento": "2026-10-10T02:51:37.547237",
+  "sha256_fuente": "35ec0840afa486992fa552a5762fd19eed332b06a2f1d0ea58af73c95bf6fd71"
+}

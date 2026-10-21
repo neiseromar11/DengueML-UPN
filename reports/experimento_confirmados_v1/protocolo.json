@@ -1,0 +1,91 @@
+{
+  "hipotesis": "Vacíos de Casos hasta 2026-SE40 tratados como cero registros; sin confirmación institucional.",
+  "corte": "2026-SE40",
+  "inicio": "2020-SE01",
+  "fuente_sha256": "16e8505e176b26fb0f17ad776e9209220c23f29292c23d78b62758be38e4eebf",
+  "modelo_activo_sha256": "486501c718db9f8dc676c8d364f3e0316bc1f8a7e55fa171d44132f5580712f9",
+  "candidatos": {
+    "xgb_sin_reglas": {
+      "objective": "reg:squarederror",
+      "max_depth": 3
+    },
+    "xgb_poisson_estacional": {
+      "objective": "count:poisson",
+      "max_depth": 2
+    },
+    "xgb_cuadratico_estacional": {
+      "objective": "reg:squarederror",
+      "max_depth": 2
+    }
+  },
+  "referencias": [
+    "cero",
+    "ultima_semana",
+    "promedio_4",
+    "estacional_52"
+  ],
+  "cortes_seleccion": [
+    "2022-SE52",
+    "2023-SE04",
+    "2023-SE08",
+    "2023-SE12",
+    "2023-SE16",
+    "2023-SE20",
+    "2023-SE24",
+    "2023-SE28",
+    "2023-SE32",
+    "2023-SE36",
+    "2023-SE40",
+    "2023-SE44",
+    "2023-SE48",
+    "2023-SE52",
+    "2024-SE04",
+    "2024-SE08",
+    "2024-SE12",
+    "2024-SE16",
+    "2024-SE20",
+    "2024-SE24",
+    "2024-SE28",
+    "2024-SE32",
+    "2024-SE36",
+    "2024-SE40",
+    "2024-SE44",
+    "2024-SE48"
+  ],
+  "cortes_finales": [
+    "2024-SE52",
+    "2025-SE04",
+    "2025-SE08",
+    "2025-SE12",
+    "2025-SE16",
+    "2025-SE20",
+    "2025-SE24",
+    "2025-SE28",
+    "2025-SE32",
+    "2025-SE36",
+    "2025-SE40",
+    "2025-SE44",
+    "2025-SE48",
+    "2025-SE52",
+    "2026-SE03",
+    "2026-SE07",
+    "2026-SE11",
+    "2026-SE15",
+    "2026-SE19",
+    "2026-SE23",
+    "2026-SE27",
+    "2026-SE31",
+    "2026-SE35"
+  ],
+  "seleccion": "Menor MAE medio de pasos 2–4 entre candidatos XGBoost, solo en selección.",
+  "criterio": "Mejora >2% del MAE frente a cada referencia, sin empeorar ningún horizonte 2–4.",
+  "ajuste": "Reentrenar en cada origen con información disponible hasta ese origen; configuraciones fijas.",
+  "limites": [
+    "Corte inferido, no certificado como consolidado",
+    "Sin calibración de riesgo ni medición de brotes",
+    "No es validación del modelo publicado: objetivo confirmado diferente",
+    "2025–2026 permanece fuera de selección, aunque sus totales ya se inspeccionaron en auditoría",
+    "Estacional usa 52 semanas de rezago, no correspondencia exacta entre años de 53 semanas"
+  ],
+  "generado_utc": "2026-10-20T07:23:10.465078+00:00"
+}

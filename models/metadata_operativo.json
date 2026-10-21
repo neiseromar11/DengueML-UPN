@@ -1,0 +1,6 @@
+{
+  "version_pipeline": 2,
+  "datos_hasta": "2024-SE52",
+  "sha256_datos": "06a1e001123099d5c0d0fb59e2631f4ba21ccca54eaca4e6cc3e91d650c762c9",
+  "uso": "Solo posterior al corte de datos; no backtesting con modelo operativo"
+}

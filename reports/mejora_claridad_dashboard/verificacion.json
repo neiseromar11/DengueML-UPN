@@ -1,0 +1,10 @@
+{
+  "huellas_publicacion_identicas": true,
+  "archivos_publicacion": 5,
+  "vistas_sin_excepciones": 4,
+  "comparaciones_filtro_verificadas": 9,
+  "rechaza_objetivos_distintos": true,
+  "detalle_distrital_verificado": true,
+  "prueba_dashboard": "1 passed",
+  "inspeccion_visual_navegador": false
+}

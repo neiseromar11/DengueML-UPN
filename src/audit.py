@@ -38,6 +38,9 @@ EVENTOS = {
     "CARGA_DATOS": "Carga de dataset epidemiológico",
     "PROCESAMIENTO_ETL": "Ejecución del procesamiento ETL",
     "PREPARACION_MODELADO": "Preparación de datos para modelado",
+    "ENTRENAMIENTO_MODELO": "Entrenamiento del modelo predictivo",
+    "EVALUACION_MODELO": "Evaluación del modelo predictivo",
+    "PREDICCION_GENERADA": "Generación de predicciones",
     "EXPORTACION_REPORTE": "Exportación de reporte",
     "ERROR": "Error del sistema",
 }

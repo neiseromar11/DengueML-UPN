@@ -1,0 +1,17 @@
+{
+  "fecha_consulta_utc": "2026-10-20T05:12:49.064785+00:00",
+  "fuente": "Plataforma Nacional de Datos Abiertos (datosabiertos.gob.pe)",
+  "entidad": "Centro Nacional de Epidemiología, Prevención y Control de Enfermedades (CDC Perú / MINSA)",
+  "conjunto_datos": "vigilancia-epidemiológica-de-dengue",
+  "corte_consolidado": "2024-SE52",
+  "archivo_local": "data\\raw\\datos_abiertos_vigilancia_dengue.csv",
+  "sha256_local": "35ec0840afa486992fa552a5762fd19eed332b06a2f1d0ea58af73c95bf6fd71",
+  "tamano_bytes_local": 108550394,
+  "estado_sincronizacion": "Completamente sincronizado con versión oficial consolidada",
+  "url_recurso_oficial": "https://www.datosabiertos.gob.pe/sites/default/files/datos_abiertos_vigilancia_dengue_2000_2024.csv",
+  "notas_metodologicas": "La variable analizada corresponde a casos notificados semanales (Notiweb CDC). Las salas situacionales DGE presentan acumulados anuales pero no microdatos semanales desagregados por distrito. El sistema preserva la inmutabilidad y versionado de datos mediante hash SHA-256.",
+  "fecha_modificacion_servidor": "Date changed  Mié, 12/17/2025 - 09:19",
+  "nombre_recurso_servidor": "datos_abiertos_vigilancia_dengue_2000_2024.csv",
+  "tamano_bytes_remoto": 108550394,
+  "etag_remoto": "6941c36e-67858fa"
+}

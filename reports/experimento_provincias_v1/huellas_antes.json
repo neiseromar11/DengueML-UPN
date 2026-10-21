@@ -1,0 +1,22 @@
+{
+  "datos_abiertos_vigilancia_dengue_2000_2024.csv": "35ec0840afa486992fa552a5762fd19eed332b06a2f1d0ea58af73c95bf6fd71",
+  "models\\actual.json": "486501c718db9f8dc676c8d364f3e0316bc1f8a7e55fa171d44132f5580712f9",
+  "models\\releases\\v3-fd76eb0311248856-22f8bcb2a63d\\modelo.json": "a96c3d3b0a9afc3cb0d3c13d9d64c67dd24c17906f7684bf5f4d44e79ad074f9",
+  "data\\versions\\v3-fd76eb0311248856\\datos.csv": "06a1e001123099d5c0d0fb59e2631f4ba21ccca54eaca4e6cc3e91d650c762c9",
+  "src\\app.py": "3c3d8812f9e20524754f5f1b111ee0d6a724a254089e4873b9d08b5495d7d319",
+  "src\\app_avance.py": "70a027100dae91c04e98b214474ae98655930d980bc40b14513ffd2832a93492",
+  "src\\audit.py": "7394c5eecda607a899d14da03258d678f1ab57bbf54f9b5b2a4fb678f1510c70",
+  "src\\calendar_epi.py": "01c223167e719404567f85788692002e0c85bc54c71d6f818dd07fd640c85876",
+  "src\\charts.py": "102b2c46f7ef9a544d900227f77e686ba2641e3eea256113eed2d02757ba5109",
+  "src\\config.py": "fccfac805cbadc6cf1a463fbbc4736e838ae4f56fa22d5f9e0e72be22f9dcedd",
+  "src\\dashboard.py": "ab00d03904920c40c3667e34db9e0a976cb253e2d541570e224050ebda9356da",
+  "src\\data_pipeline.py": "a7489fd324ca67b65fbe54c27c60a393c66527a44c38316ef6f56a344623cc6f",
+  "src\\etl.py": "275d36e1b28a8596a43a89fb15836ae1f3e68af0e1b6adbf2992381efbd07f72",
+  "src\\features.py": "a48c17ebec226431633edd5eb0cded10d9da4da68ffb6e038ac04c4298fffc14",
+  "src\\model.py": "4a04ae987528b81b85f8b96994e34886304004510961d5cad74b060cb697c1de",
+  "src\\risk.py": "bf7a1f3622ea8aeca97c5353b23b59114193e6a5d1f9ff711de3c9988ee65bdd",
+  "src\\services.py": "74bf81c2b7eed6a168511e2d54828484ae794074133e85b99b649a3f3a0bc74e",
+  "src\\train.py": "3aebb49251da4ef7521af1a02d5ce2573ebb5f2ab3eaa743b02b4f9ef3bdc70e",
+  "src\\train_model.py": "aeb68bd312f1d3f3bc1f3f4a9bae6d60e03e04d0f4f867fa45467d1a1c2b9485",
+  "src\\validation.py": "324dc163d0592ee55fbb5f1a99905320369891ef92803b1e3aaba2d655538c5c"
+}

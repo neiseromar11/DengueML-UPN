@@ -1,0 +1,11 @@
+{
+  "version": "v3-fd76eb0311248856-fc78efbbfec2",
+  "datos": "data\\versions\\v3-fd76eb0311248856\\datos.csv",
+  "metadata": "data\\versions\\v3-fd76eb0311248856\\metadata.json",
+  "sha256_datos": "06a1e001123099d5c0d0fb59e2631f4ba21ccca54eaca4e6cc3e91d650c762c9",
+  "modelo": null,
+  "sha256_modelo": null,
+  "evaluacion": "models\\releases\\v3-fd76eb0311248856-fc78efbbfec2\\evaluacion.json",
+  "metodo": "baseline",
+  "corte": "2024-SE52"
+}
